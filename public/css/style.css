@@ -1,0 +1,62 @@
+html {
+    font-family: GillSans, Calibri, Trebuchet, sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    font-size: 16px;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+blockquote {
+    padding-bottom: 1px;
+}
+
+.my-header {
+    margin-bottom: 2em;
+}
+
+.my-header-banner {
+    margin-top: 2em;
+}
+
+.my-header-banner h5 {
+    margin: 0 auto;
+}
+
+.my-menu-tabs {
+    overflow: hidden;
+}
+
+.my-sign {
+    margin: 2em;
+}
+
+.my-side {
+    width: 18.75em;
+}
+
+.my-lesson {
+    padding: 1px;
+    min-height: 480px;
+}
+
+.my-lesson img {
+    max-width: 100%;
+    height: auto;
+}
+
+.my-comment {
+    border-left: solid .3em #64b5f6;
+}
+
+@media only screen and (min-width: 992px) {
+    .my-main {
+        padding-left: 18.75em;
+    }
+}
