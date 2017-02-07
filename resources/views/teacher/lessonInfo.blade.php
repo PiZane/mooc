@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col s12">
                     <ul class="tabs my-menu-tabs">
-                        <li class="tab col s4"><a class="{{ $lesson->type?'active':null }}" href="#doc">文档类型</a></li>
+                        <li class="tab col s4"><a class="{{ $lesson->type?'active':null }}" href="#doc">图文类型</a></li>
                         <li class="tab col s4"><a class="{{ $lesson->type?null:'active' }}" href="#video">视频类型</a></li>
                     </ul>
                 </div>
@@ -25,7 +25,7 @@
                         <input type="hidden" name="type" value="1">
                         <div class="input-field">
                             <i class="material-icons prefix">subtitles</i>
-                            <label for="title">章节标题</label>
+                            <label for="title">课时标题</label>
                             <input class="validate" id="title" name="title" type="text" value="{{ $lesson->title }}" required>
                         </div>
                         <div class="input-field">
@@ -35,15 +35,15 @@
                         </div>
                         <div class="input-field">
                             <i class="material-icons prefix">description</i>
-                            <label for="description">章节简介</label>
-                            <textarea class="materialize-textarea" id="description" name="description" placeholder="可空, 本章节简介, 默认为空">{{ $lesson->description }}</textarea>
+                            <label for="board">课时公告</label>
+                            <textarea class="materialize-textarea" id="board" name="board" placeholder="可空, 本课时公告, 默认为空">{{ $lesson->board }}</textarea>
                         </div>
                         <div class="input-field">
-                            <h5>章节内容</h5>
+                            <h5>课时内容</h5>
                             <script id="editor" name="text_content" type="text/plain">{!! $lesson->text_content !!}</script>
                         </div>
                         <div class="input-field right">
-                            <button class="right btn blue lighten-2 waves-effect waves-light" type="submit" name="action">修改章节</button>
+                            <button class="right btn blue lighten-2 waves-effect waves-light" type="submit" name="action">修改课时</button>
                         </div>
                     </form>
                 </div>
@@ -53,26 +53,31 @@
                         <input type="hidden" name="type" value="0">
                         <div class="input-field">
                             <i class="material-icons prefix">subtitles</i>
-                            <label for="title">章节标题</label>
-                            <input class="validate" id="title" name="title" type="text" required>
+                            <label for="title">课时标题</label>
+                            <input class="validate" id="title" name="title" type="text" value="{{ $lesson->title }}" required>
                         </div>
                         <div class="input-field">
                             <i class="material-icons prefix">picture_in_picture</i>
                             <label for="image_url">封面图片链接</label>
-                            <input class="validate" id="image_url" name="image_url" type="text" placeholder="可空, 封面图片超链接, 默认为课程封面图片">
+                            <input class="validate" id="image_url" name="image_url" type="text" value="{{ $lesson->image_url }}" placeholder="可空, 封面图片超链接, 默认为课程封面图片">
                         </div>
                         <div class="input-field">
                             <i class="material-icons prefix">description</i>
-                            <label for="description">章节简介</label>
-                            <textarea class="materialize-textarea" id="description" name="description" placeholder="可空, 本章节简介, 默认为空"></textarea>
+                            <label for="board">课时公告</label>
+                            <textarea class="materialize-textarea" id="board" name="board" value="{{ $lesson->board }}" placeholder="可空, 本课时公告, 默认为空"></textarea>
                         </div>
                         <div class="input-field">
                             <i class="material-icons prefix">videocam</i>
                             <label for="video_url">视频链接</label>
-                            <input class="validate" id="video_url" name="video_url" type="text" required>
+                            <input class="validate" id="video_url" name="video_url" type="text" value="{{ $lesson->video_url }}" placeholder="可空,视频链接和HTML视频代码至少填写一项,默认视频链接优先">
+                        </div>
+                        <div class="input-field">
+                            <i class="material-icons prefix">video_library</i>
+                            <label for="video_content">html视频代码</label>
+                            <textarea class="materialize-textarea" id="video_content" name="video_content" type="text" value="{{ $lesson->video_url }}" placeholder="可空,视频链接和HTML视频代码至少填写一项,默认视频链接优先"></textarea>
                         </div>
                         <div class="input-field right">
-                            <button class="right btn blue lighten-2 waves-effect waves-light" type="submit" name="action">修改章节</button>
+                            <button class="right btn blue lighten-2 waves-effect waves-light" type="submit" name="action">修改课时</button>
                         </div>
                     </form>
                 </div>

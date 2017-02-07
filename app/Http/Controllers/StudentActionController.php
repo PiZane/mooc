@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Student;
 use App\Comment;
 
 class StudentActionController extends Controller
@@ -10,6 +11,31 @@ class StudentActionController extends Controller
     public function __construct()
     {
         $this->middleware('student');
+    }
+
+    /**
+     * 修改个人信息
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function editProfile(Request $request)
+    {
+        //验证表单
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'class' => 'required|max:255',
+            'school_id' => 'required|alpha_num|max:255'
+        ]);
+        $user = $request->user;
+        if (empty($user) || $user->type) {
+            return redirect('/')->with('status', 'error');
+        }
+        $student = Student::query()->find($user->id);
+        $student->name      = $request->name;
+        $student->class     = $request->class;
+        $student->school_id = $request->school_id;
+        $student->save();
+        return redirect()->back()->with('status', '个人信息已更新');
     }
 
     /**
@@ -58,7 +84,7 @@ class StudentActionController extends Controller
             return '您未登录';
         }
         if ($user->type) {
-            return '用户类型不正确';
+            return '您的身份是教师,无需加入课程';
         }
         if (empty($course->students()->find($user->id))){
             $course->students()->attach($user->id);

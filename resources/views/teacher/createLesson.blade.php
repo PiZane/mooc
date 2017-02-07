@@ -64,7 +64,12 @@
                     <div class="input-field">
                         <i class="material-icons prefix">videocam</i>
                         <label for="video_url">视频链接</label>
-                        <input class="validate" id="video_url" name="video_url" type="text" required>
+                        <input class="validate" id="video_url" name="video_url" type="text" placeholder="可空,视频链接和HTML视频代码至少填写一项,默认视频链接优先">
+                    </div>
+                    <div class="input-field">
+                        <i class="material-icons prefix">video_library</i>
+                        <label for="video_content">html视频代码</label>
+                        <textarea class="materialize-textarea" id="video_content" name="video_content" type="text" placeholder="可空,视频链接和HTML视频代码至少填写一项,默认视频链接优先"></textarea>
                     </div>
                     <div class="input-field right">
                         <button class="right btn blue lighten-2 waves-effect waves-light" type="submit" name="action">添加课时</button>

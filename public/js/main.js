@@ -84,7 +84,7 @@ function getComment(url, avatar) {
         for (var x in e.data) {
             appendComment(e.data[x], avatar, '#comments')
         }
-        if (e.total < 3) {
+        if (e.total < 4) {
             return false;
         }
         $('#comments').append('<div id="page" class="col s12 m10 l9" style="margin-top: 1em"></div>');

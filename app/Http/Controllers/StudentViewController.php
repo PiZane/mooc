@@ -25,6 +25,20 @@ class StudentViewController extends Controller
     }
 
     /**
+     * 显示个人主页
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function profile(Request $request)
+    {
+        $user = $request->user;
+        if ($user->type) {
+            return redirect()->action("TeacherViewController@index");
+        }
+        return view('student.profile');
+    }
+
+    /**
      * 显示课程视图
      *
      * @param Request $request
@@ -70,7 +84,7 @@ class StudentViewController extends Controller
         }
 
         //获取置顶评论
-        $topComments = $lesson->comments()->where('top', 1)->take(3)->get();
+        $topComments = $lesson->comments()->where('top', 1)->orderBy('created_at', 'DESC')->take(3)->get();
         $topComments = Comment::getAllCompleteComment($topComments);
 
         return view('student.lesson', compact('course', 'lesson', 'lessons', 'topComments'));

@@ -29,15 +29,21 @@
                 </div>
             @else
                 <div class="col s12">
-                    <video class="responsive-video" width="100%" controls>
-                        <source src="{{ $lesson->video_url }}" type="video/mp4">
-                    </video>
+                    @if($lesson->video_url)
+                        <video class="responsive-video" width="100%" controls>
+                            <source src="{{ $lesson->video_url }}" type="video/mp4">
+                        </video>
+                    @else
+                        <div class="video-container">
+                            {!! $lesson->video_content !!}
+                        </div>
+                    @endif
                 </div>
             @endif
         </div>
         <div class="row" id="lessonMenu">
             <div class="col s12">
-                <ul class="tabs tabs-transparent teal lighten-2 white-text">
+                <ul class="tabs my-menu-tabs tabs-transparent teal lighten-2 white-text">
                     <li class="tab col s3"><a href="#courseList">课程列表</a></li>
                     <li class="tab col s3"><a href="#topCommentsTab">置顶回复</a></li>
                     <li class="tab col s3"><a href="#commentsTab">评论列表</a></li>
@@ -64,7 +70,7 @@
 
                 </div>
                 <div id="postComment">
-                    <div class="col s12 m7">
+                    <div class="col s12 m10 l8">
                         <h4 class="blue-text center-align">发表评论</h4>
                         <form action="{{ action("StudentActionController@comment") }}" method="post">
                             {{ csrf_field() }}

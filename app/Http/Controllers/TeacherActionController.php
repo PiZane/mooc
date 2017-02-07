@@ -93,20 +93,27 @@ class TeacherActionController extends Controller
      */
     public function createLesson(Request $request)
     {
-        //验证表单
+        //验证表单 type=1 为图文类型 type=0 为视频类型
         $this->validate($request, [
             'title' => 'required|max:255',
             'type'  => 'required'
         ]);
+        //视频内容认证 视频链接和html视频代码不能全为空
+        if (!$request->type &&
+            empty($request->video_url) &&
+            empty($request->video_content)) {
+            return redirect()->back()->with('status', '视频链接和html视频代码至少填写一项');
+        }
         $lesson = new Lesson();
-        $lesson->type         = $request->type;
-        $lesson->title        = $request->title;
-        $lesson->board        = $request->board;
-        $lesson->image_url    = $request->image_url;
-        $lesson->video_url    = $request->video_url;
-        $lesson->text_content = $request->text_content;
-        $lesson->course_id    = $request->course->id;
-        $lesson->teacher_id   = $request->teacher->id;
+        $lesson->type          = $request->type;
+        $lesson->title         = $request->title;
+        $lesson->board         = $request->board;
+        $lesson->image_url     = $request->image_url;
+        $lesson->video_url     = $request->video_url;
+        $lesson->text_content  = $request->text_content;
+        $lesson->video_content = $request->video_content;
+        $lesson->course_id     = $request->course->id;
+        $lesson->teacher_id    = $request->teacher->id;
         $lesson->save();
         return redirect()->back()->with('status', '成功添加课时');
     }
@@ -124,13 +131,20 @@ class TeacherActionController extends Controller
             'title' => 'required|max:255',
             'type'  => 'required'
         ]);
+        //视频内容认证 视频链接和html视频代码不能全为空
+        if (!$request->type &&
+            empty($request->video_url) &&
+            empty($request->video_content)) {
+            return redirect()->back()->with('status', '视频链接和html视频代码至少填写一项');
+        }
         $lesson = $request->lesson;
-        $lesson->type         = $request->type;
-        $lesson->title        = $request->title;
-        $lesson->board        = $request->board;
-        $lesson->image_url    = $request->image_url;
-        $lesson->video_url    = $request->video_url;
-        $lesson->text_content = $request->text_content;
+        $lesson->type          = $request->type;
+        $lesson->title         = $request->title;
+        $lesson->board         = $request->board;
+        $lesson->image_url     = $request->image_url;
+        $lesson->video_url     = $request->video_url;
+        $lesson->text_content  = $request->text_content;
+        $lesson->video_content = $request->video_content;
         $lesson->save();
         return redirect()->back()->with('status', '成功修改本课时');
     }

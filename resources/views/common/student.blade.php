@@ -20,7 +20,8 @@
                     <li><a class="btn teal accent-4 wavess-effect waves-light" href="#studentLogin">登录</a></li>
                     <li><a class="btn teal accent-4 waves-effect waves-light" href="#studentRegister">注册</a></li>
                 @else
-                    <li>欢迎回来, {{ $user->name }} {{ $user->type?'老师':'同学' }}</li>
+                    <li>欢迎回来, {{ $user->name }} {{ $user->type?'教师':'同学' }}</li>
+                    <li><a class="btn teal accent-4 waves-effect waves-light" href="{{ action("StudentViewController@profile") }}">个人主页</a></li>
                     <li><a class="btn teal accent-4 waves-effect waves-light" href="{{ action("StudentAuth\\SLoginController@logout") }}">注销</a></li>
                 @endif
             </ul>
@@ -30,6 +31,7 @@
                     <li><a href="#studentRegister"><i class="left material-icons">email</i>注册</a></li>
                 @else
                     <li><h4 class="blue-text">{{ $user->name }}</h4></li>
+                    <li><a href="{{ action("StudentViewController@profile") }}"><i class="left material-icons">perm_identity</i>个人主页</a></li>
                     <li><a href="{{ action("StudentAuth\\SLoginController@logout") }}"><i class="left material-icons">input</i>注销</a></li>
                 @endif
             </ul>
@@ -143,7 +145,6 @@
         </div>
     </div>
 </footer>
-<template>{{ session('status') }}</template>
 </body>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
