@@ -25,4 +25,12 @@ class Upload extends Model
         }
         return null;
     }
+
+    static function avatarUpload($avatar, $userId=-1)
+    {
+        $avatar   = base64_decode($avatar);
+        $fileName = time().'_'.$userId.'.png';
+        file_put_contents(storage_path().'/app/public/'.$fileName, $avatar);
+        return url('storage/'.$fileName);
+    }
 }

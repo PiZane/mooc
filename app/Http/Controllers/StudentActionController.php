@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Upload;
 use Illuminate\Http\Request;
 use App\Student;
 use App\Comment;
@@ -38,6 +39,21 @@ class StudentActionController extends Controller
         return redirect()->back()->with('status', '个人信息已更新');
     }
 
+    public function editAvatar(Request $request)
+    {
+        $this->validate($request, [
+            'avatar' => 'required',
+        ]);
+        $user = $request->user;
+        if (empty($user)) {
+            return '未登录无法上传';
+        }
+        $avatar = Upload::avatarUpload($request->avatar, $user->id);
+        $student = Student::query()->find($user->id);
+        $student->image_url = $avatar;
+        $student->save();
+        return 'ok';
+    }
     /**
      * 执行评论操作
      *

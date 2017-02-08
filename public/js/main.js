@@ -3,6 +3,40 @@ $(document).ready(function(){
     $(".button-collapse").sideNav();
     $('.modal').modal();
 });
+
+$('#avatarFile').change(function(){
+    var file=this.files[0];
+    var reader=new FileReader();
+    reader.onload=function(){
+        // 通过 reader.result 来访问生成的 DataURL
+        var url=reader.result;
+        $('#avatar').attr('src', url);
+        $('#avatar').cropper('replace', url);
+    };
+    reader.readAsDataURL(file);
+});
+
+var avatar = $('#avatar').cropper({
+    responsive: false,
+    aspectRatio: 1 / 1
+});
+
+function uploadAvatar(url, token) {
+    var img = avatar.cropper("getCropBoxData");
+    if (img.width < 120 || img.height <120) {
+        Materialize.toast('裁剪区域不得小于120px*120px', 3000);
+        return false;
+    }
+    var dataURL = avatar.cropper("getCroppedCanvas");
+    var imgUrl  = dataURL.toDataURL("image/png", 1.0);
+
+    $.post(url,{
+            '_token' : token,
+            'avatar' : imgUrl.substr(imgUrl.indexOf(',') + 1)
+        }
+    );
+}
+
 function deleteAlert(url, token) {
     if(confirm("确认要删除？")){
         $.post(url,{

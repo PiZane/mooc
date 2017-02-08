@@ -14,21 +14,12 @@
                 </div>
                 <div class="card-content">
                     <div id="profile">
-                        <form action="{{ action("StudentActionController@editProfile") }}" enctype="multipart/form-data" method="post">
+                        <form action="{{ action("StudentActionController@editProfile") }}" method="post">
                             {{ csrf_field() }}
-                            <div class="input-field col s3 m2">
-                                <img class="responsive-img" src="{{ $user->image_url?:$setting->avatar }}" alt="avatar">
+                            <div class="input-field col s3 m2 no-padding">
+                                <a href="#avatarModal"><img class="responsive-img" src="{{ $user->image_url?:$setting->avatar }}" alt="avatar"></a>
                             </div>
                             <div class="col s9 m8">
-                                <div class="file-field input-field">
-                                    <div class="btn">
-                                        <span>上传头像</span>
-                                        <input type="file" name="avatar" accept="image/jpeg,image/png,image/gif" multiple>
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text" value="{{ $user->image_url }}">
-                                    </div>
-                                </div>
                                 <div class="input-field">
                                     <i class="material-icons prefix">email</i>
                                     <label for="email">电子邮件</label>
@@ -59,5 +50,27 @@
             </div>
         </div>
     </div>
+</div>
+<div class="modal" id="avatarModal" style="max-width: 500px;">
+        <div class="modal-content">
+            <div class="col s12">
+                <div class="cropper-container">
+                    <img id="avatar" src="{{ $user->image_url?:$setting->avatar }}" alt="avatar">
+                </div>
+            </div>
+            <div class="file-field input-field col s12">
+                <div class="btn">
+                    <span>选择头像</span>
+                    <input id="avatarFile" type="file" name="image" accept="image/jpeg,image/png,image/gif" required>
+                </div>
+                <div class="file-path-wrapper">
+                    <label class="hide" for="image_path">图片路径</label>
+                    <input class="file-path validate" id="image_path" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer col s12">
+            <button class="right btn blue lighten-2 waves-effect waves-light" onclick="uploadAvatar('{{ action("StudentActionController@editAvatar") }}', '{{ csrf_token() }}')">提交</button>
+        </div>
 </div>
 @endsection

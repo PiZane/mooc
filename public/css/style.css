@@ -17,6 +17,10 @@ blockquote {
     padding-bottom: 1px;
 }
 
+img {
+    max-width: 100%;
+}
+
 .my-header {
     margin-bottom: 2em;
 }

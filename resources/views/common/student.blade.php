@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
     <link href="https://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/cropper.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <title>@yield('title')</title>
 </head>
@@ -148,6 +149,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+<script src="{{ asset('js/cropper.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 @if (session('status'))
     <script>

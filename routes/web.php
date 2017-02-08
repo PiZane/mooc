@@ -20,6 +20,7 @@ Route::get('course/{courseId}', "StudentViewController@course");
 Route::get('lesson/{courseId}/{lessonId}', "StudentViewController@lesson");
 Route::get('getComment/{lessonId}', "StudentViewController@comment");
 Route::post('edit/profile', "StudentActionController@editProfile");
+Route::post('edit/avatar', "StudentActionController@editAvatar");
 Route::post('postComment', "StudentActionController@comment");
 Route::post('joinCourse/{courseId}', "StudentActionController@joinCourse");
 // 学生登录认证路由
