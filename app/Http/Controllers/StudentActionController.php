@@ -48,12 +48,13 @@ class StudentActionController extends Controller
         if (empty($user)) {
             return '未登录无法上传';
         }
-        $avatar = Upload::avatarUpload($request->avatar, $user->id);
+        $avatar = Upload::imageUpload($request->avatar, $user->id, 'public/avatar', true, 120, 120);
         $student = Student::query()->find($user->id);
         $student->image_url = $avatar;
         $student->save();
-        return 'ok';
+        return '头像修改成功';
     }
+
     /**
      * 执行评论操作
      *

@@ -58,3 +58,6 @@
         </div>
     </main>
 @endsection
+@section('setting')
+    <script src="{{ asset('js/setting.js') }}"></script>
+@endsection

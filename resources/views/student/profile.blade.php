@@ -17,7 +17,9 @@
                         <form action="{{ action("StudentActionController@editProfile") }}" method="post">
                             {{ csrf_field() }}
                             <div class="input-field col s3 m2 no-padding">
-                                <a href="#avatarModal"><img class="responsive-img" src="{{ $user->image_url?:$setting->avatar }}" alt="avatar"></a>
+                                <a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="点击上传新头像" href="#avatarModal">
+                                    <img class="responsive-img" src="{{ $user->image_url?:$setting->avatar }}" alt="avatar" onclick="$('#avatarFile').click()">
+                                </a>
                             </div>
                             <div class="col s9 m8">
                                 <div class="input-field">
@@ -59,9 +61,9 @@
                 </div>
             </div>
             <div class="file-field input-field col s12">
-                <div class="btn">
+                <div class="btn blue lighten-2 waves-effect waves-light">
                     <span>选择头像</span>
-                    <input id="avatarFile" type="file" name="image" accept="image/jpeg,image/png,image/gif" required>
+                    <input id="avatarFile" type="file" accept="image/jpeg,image/png,image/gif">
                 </div>
                 <div class="file-path-wrapper">
                     <label class="hide" for="image_path">图片路径</label>
@@ -73,4 +75,8 @@
             <button class="right btn blue lighten-2 waves-effect waves-light" onclick="uploadAvatar('{{ action("StudentActionController@editAvatar") }}', '{{ csrf_token() }}')">提交</button>
         </div>
 </div>
+@endsection
+@section('script')
+    <script src="{{ asset('js/cropper.min.js') }}"></script>
+    <script src="{{ asset('js/avatar.js') }}"></script>
 @endsection

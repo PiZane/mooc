@@ -149,8 +149,8 @@
 </body>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-<script src="{{ asset('js/cropper.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
+@yield('script')
 @if (session('status'))
     <script>
         Materialize.toast('{{ session('status') }}',3000);
@@ -163,5 +163,4 @@
         @endforeach
     </script>
 @endif
-@yield('script')
 </html>

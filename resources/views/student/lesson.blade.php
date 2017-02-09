@@ -99,6 +99,7 @@
     </div>
 @endsection
 @section('script')
+    <script src="{{ asset('js/comment.js') }}"></script>
     <script>
         var url    = '{{ action("StudentViewController@comment", $lesson->id) }}';
         var avatar = '{{ $setting->avatar }}';
