@@ -72,11 +72,11 @@
                 <div id="postComment">
                     <div class="col s12 m10 l8">
                         <h4 class="blue-text center-align">发表评论</h4>
-                        <form action="{{ action("StudentActionController@comment") }}" method="post">
+                        <form id="commentForm" action="{{ action("StudentActionController@comment") }}" method="post">
                             {{ csrf_field() }}
                             <input type="hidden" id="lessonId" name="lessonId" value="{{ $lesson->id }}">
                             <input type="hidden" id="replyId" name="replyId" value="">
-                            <div >
+                            <div>
                                 <div class="input-field col s12" onclick="clearReply('{{ $lesson->title }}')">
                                     <i class="material-icons prefix">view_headline</i>
                                     <label for="reply">回复</label>
@@ -88,7 +88,7 @@
                                     <i class="material-icons prefix">description</i>
                                     <label for="commentContent">评论内容</label>
                                     <textarea class="materialize-textarea" id="commentContent" name="commentContent"></textarea>
-                                    <button class="right btn blue lighten-2 waves-effect waves-light" type="submit" name="action">发表评论</button>
+                                    <a class="right btn blue lighten-2 waves-effect waves-light" onclick="submitComment()">发表评论</a>
                                 </div>
                             </div>
                         </form>
@@ -99,11 +99,9 @@
     </div>
 @endsection
 @section('script')
-    <script src="{{ asset('js/comment.js') }}"></script>
     <script>
         var url    = '{{ action("StudentViewController@comment", $lesson->id) }}';
         var avatar = '{{ $setting->avatar }}';
-        getTopComments('{!! json_encode($topComments) !!}');
-        getComment(url, avatar);
     </script>
+    <script src="{{ asset('js/comment.js') }}"></script>
 @endsection

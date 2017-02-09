@@ -1,3 +1,4 @@
+getComment(url, avatar);
 function getComment(url, avatar) {
     if (isNull(url)) {
         return null;
@@ -80,4 +81,21 @@ function reply(id, name) {
 function clearReply(name) {
     $('#replyId').val('');
     $('#reply').val(name);
+}
+
+function submitComment() {
+    $.ajax({
+        cache: false,
+        type: "post",
+        url: $('#commentForm').attr('action'),
+        data: $('#commentForm').serialize(),// 你的formid
+        async: false,
+        error: function(request) {
+            Materialize.toast("评论失败, 请刷新页面后重试", 3000);
+        },
+        success: function(data) {
+            Materialize.toast(data, 3000);
+            getComment(url, avatar);
+        }
+    });
 }

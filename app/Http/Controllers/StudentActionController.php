@@ -39,6 +39,12 @@ class StudentActionController extends Controller
         return redirect()->back()->with('status', '个人信息已更新');
     }
 
+    /**
+     * 修改头像
+     *
+     * @param Request $request
+     * @return string
+     */
     public function editAvatar(Request $request)
     {
         $this->validate($request, [
@@ -59,7 +65,7 @@ class StudentActionController extends Controller
      * 执行评论操作
      *
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return string
      */
     public function comment(Request $request)
     {
@@ -71,7 +77,7 @@ class StudentActionController extends Controller
 
         //验证登录
         if (empty($request->user)) {
-            return redirect()->back()->with('status', "您暂未登录, 请登录后操作");
+            return "您暂未登录, 请登录后操作";
         }
 
         //保存评论
@@ -84,7 +90,7 @@ class StudentActionController extends Controller
         $comment->student_id = $user->type?null:$user->id;
         $comment->teacher_id = $user->type?$user->id:null;
         $comment->save();
-        return redirect()->back()->with('status', "评论发表成功");
+        return "评论发表成功";
     }
 
     /**
