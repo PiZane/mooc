@@ -6,6 +6,8 @@ use App\Upload;
 use Illuminate\Http\Request;
 use App\Student;
 use App\Comment;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 
 class StudentActionController extends Controller
 {
@@ -59,6 +61,24 @@ class StudentActionController extends Controller
         $student->image_url = $avatar;
         $student->save();
         return '头像修改成功';
+    }
+
+    public function changePassword(Request $request)
+    {
+        $this->validate($request, [
+            'oldPassword' => 'required|min:6',
+            'newPassword' => 'required|min:6|confirmed',
+        ]);
+        $user = $request->user;
+        $student = Student::query()->find($user->id);
+        if (Hash::check($request->oldPassword, $student->password)) {
+            $password = bcrypt($request->newPassword);
+            $student->password = $password;
+            $student->save();
+            return redirect()->action("StudentAuth\\SLoginController@logout")->with('status', '密码修改成功');
+        } else {
+            return redirect()->back()->withErrors('原密码错误');
+        }
     }
 
     /**

@@ -23,10 +23,11 @@ Route::post('edit/profile', "StudentActionController@editProfile");
 Route::post('edit/avatar', "StudentActionController@editAvatar");
 Route::post('postComment', "StudentActionController@comment");
 Route::post('joinCourse/{courseId}', "StudentActionController@joinCourse");
-// 学生登录认证路由
+// 学生身份认证路由
 Route::post('login', "StudentAuth\\SLoginController@login");
 Route::get ('logout', "StudentAuth\\SLoginController@logout");
 Route::post('register', "StudentAuth\\SRegisterController@register");
+Route::post('changePassword', "StudentActionController@changePassword");
 
 /**
  * 后台路由

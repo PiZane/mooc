@@ -35,7 +35,8 @@ class StudentViewController extends Controller
         if ($user->type) {
             return redirect()->action("TeacherViewController@index");
         }
-        return view('student.profile');
+        $studentCourses = $user->courses;
+        return view('student.profile', compact('studentCourses'));
     }
 
     /**

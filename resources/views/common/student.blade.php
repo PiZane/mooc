@@ -159,7 +159,7 @@
 @if (count($errors) > 0)
     <script>
         @foreach ($errors->all() as $error)
-            Materialize.toast('{{ $error }}',3000);
+            Materialize.toast('{{ $error }}', 10000, 'red');
         @endforeach
     </script>
 @endif

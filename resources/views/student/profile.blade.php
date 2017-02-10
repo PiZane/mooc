@@ -8,7 +8,7 @@
                 <div class="card-tabs">
                     <ul class="tabs my-menu-tabs tabs-fixed-width">
                         <li class="tab"><a class="active" href="#profile">个人信息</a></li>
-                        <li class="tab"><a href="#course">我的课程</a></li>
+                        <li class="tab"><a href="#courses">我的课程</a></li>
                         <li class="tab"><a href="#security">安全设置</a></li>
                     </ul>
                 </div>
@@ -46,8 +46,39 @@
                             </div>
                         </form>
                     </div>
-                    <div id="course">TODO</div>
-                    <div id="security">TODO</div>
+                    <div id="courses">
+                        <div class="col m10 offset-m1 s12">
+                            <div class="collection with-header">
+                                <div class="collection-header"><h4 class="blue-text">已选课程</h4></div>
+                            @foreach($studentCourses as $course)
+                                <a href="{{ action("StudentViewController@course", $course->id) }}" class="collection-item">{{ $course->name }}<i class="right material-icons">send</i></a>
+                            @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div id="security">
+                        <div class="col s12 m10 l8 offset-m1 offset-l2">
+                            <form action="{{ action("StudentActionController@changePassword") }}" method="post">
+                                {{ csrf_field() }}
+                                <div class="input-field">
+                                    <i class="material-icons prefix">vpn_key</i>
+                                    <label for="oldPassword">原密码</label>
+                                    <input class="validate" id="oldPassword" name="oldPassword" type="password" required>
+                                </div>
+                                <div class="input-field">
+                                    <i class="material-icons prefix">vpn_key</i>
+                                    <label for="newPassword">新密码</label>
+                                    <input class="validate" id="newPassword" name="newPassword" type="password" required>
+                                </div>
+                                <div class="input-field">
+                                    <i class="material-icons prefix">vpn_key</i>
+                                    <label for="newPassword_confirmation">重复密码</label>
+                                    <input class="validate" id="newPassword_confirmation" name="newPassword_confirmation" type="password" required>
+                                </div>
+                                <button class="right btn lighten-2 waves-effect waves-light" type="submit" name="action">修改密码</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

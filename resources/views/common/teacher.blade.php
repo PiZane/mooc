@@ -19,7 +19,7 @@
     <ul id="nav-mobile" class="my-side side-nav fixed" style="transform: translateX(0%);">
         <li class="logo">
             <div class="brand-logo">
-                <h3>后台首页</h3>
+                <h3>管理后台</h3>
             </div>
         </li>
         <li class="bold"><a href="{{ action("TeacherViewController@course") }}">课程管理</a></li>
