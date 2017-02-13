@@ -39,6 +39,11 @@ class StudentViewController extends Controller
         return view('student.profile', compact('studentCourses'));
     }
 
+    public function message()
+    {
+        return view('student.message');
+    }
+
     /**
      * 显示课程视图
      *

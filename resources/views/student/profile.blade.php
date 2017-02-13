@@ -58,7 +58,7 @@
                     </div>
                     <div id="security">
                         <div class="col s12 m10 l8 offset-m1 offset-l2">
-                            <form action="{{ action("StudentActionController@changePassword") }}" method="post">
+                            <form action="{{ action("StudentActionController@editPassword") }}" method="post">
                                 {{ csrf_field() }}
                                 <div class="input-field">
                                     <i class="material-icons prefix">vpn_key</i>

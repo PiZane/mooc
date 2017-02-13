@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Upload;
-use Illuminate\Http\Request;
 use App\Student;
 use App\Comment;
-use Illuminate\Support\Facades\Crypt;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class StudentActionController extends Controller
@@ -63,7 +62,13 @@ class StudentActionController extends Controller
         return '头像修改成功';
     }
 
-    public function changePassword(Request $request)
+    /**
+     * 修改密码
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function editPassword(Request $request)
     {
         $this->validate($request, [
             'oldPassword' => 'required|min:6',

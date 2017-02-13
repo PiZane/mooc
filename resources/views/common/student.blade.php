@@ -21,9 +21,12 @@
                     <li><a class="btn teal accent-4 wavess-effect waves-light" href="#studentLogin">登录</a></li>
                     <li><a class="btn teal accent-4 waves-effect waves-light" href="#studentRegister">注册</a></li>
                 @else
-                    <li>欢迎回来, {{ $user->name }} {{ $user->type?'教师':'同学' }}</li>
-                    <li><a class="btn teal accent-4 waves-effect waves-light" href="{{ action("StudentViewController@profile") }}">个人主页</a></li>
-                    <li><a class="btn teal accent-4 waves-effect waves-light" href="{{ action("StudentAuth\\SLoginController@logout") }}">注销</a></li>
+                    <ul id="dropdown" class="dropdown-content">
+                        <li><a class="waves-effect waves-light" href="{{ action("StudentViewController@profile") }}">个人主页</a></li>
+                        <li><a class="waves-effect waves-light" href="{{ action("StudentAuth\\SLoginController@logout") }}">注销</a></li>
+                    </ul>
+                    <li>欢迎回来,</li>
+                    <li><a class="dropdown-button" href="#" data-activates="dropdown">{{ $user->name }} {{ $user->type?'教师':'同学' }}<i class="material-icons right">arrow_drop_down</i></a></li>
                 @endif
             </ul>
             <ul class="side-nav" id="mobile-demo">

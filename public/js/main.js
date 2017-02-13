@@ -1,7 +1,8 @@
 $(document).ready(function(){
+    $('.modal').modal();
     $('.tooltipped').tooltip({delay: 50});
     $(".button-collapse").sideNav({menuWidth: 200});
-    $('.modal').modal();
+    $(".dropdown-button").dropdown({belowOrigin: true});
 });
 
 function deleteAlert(url, token) {
