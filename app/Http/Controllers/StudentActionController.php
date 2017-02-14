@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Message;
+use App\Teacher;
 use App\Upload;
 use App\Student;
 use App\Comment;
@@ -139,5 +141,20 @@ class StudentActionController extends Controller
             return '成功加入课程';
         }
         return '已经加入该课程';
+    }
+
+    public function sendMessage(Request $request)
+    {
+        $this->validate($request, [
+            'teacherId' => 'required|numeric',
+            'messageContent'  => 'required|max:1024'
+        ]);
+        $teacher = Teacher::query()->findOrFail($request->teacherId);
+        $message = new Message();
+        $message->content         = $request->messageContent;
+        $message->to_teacher_id   = $teacher->id;
+        $message->from_student_id = $request->user->id;
+        $message->save();
+        return redirect()->back()->with('status', '私信发送成功');
     }
 }

@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $('.modal').modal();
-    $('.tooltipped').tooltip({delay: 50});
+    $('select').material_select();
+    $('.tooltipped').tooltip({delay: 30});
     $(".button-collapse").sideNav({menuWidth: 200});
     $(".dropdown-button").dropdown({belowOrigin: true});
 });

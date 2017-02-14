@@ -23,6 +23,7 @@
                 @else
                     <ul id="dropdown" class="dropdown-content">
                         <li><a class="waves-effect waves-light" href="{{ action("StudentViewController@profile") }}">个人主页</a></li>
+                        <li><a class="waves-effect waves-light" href="{{ action("StudentViewController@message") }}">私信</a></li>
                         <li><a class="waves-effect waves-light" href="{{ action("StudentAuth\\SLoginController@logout") }}">注销</a></li>
                     </ul>
                     <li>欢迎回来,</li>
@@ -36,6 +37,7 @@
                 @else
                     <li><h4 class="blue-text">{{ $user->name }}</h4></li>
                     <li><a href="{{ action("StudentViewController@profile") }}"><i class="left material-icons">perm_identity</i>个人主页</a></li>
+                    <li><a href="{{ action("StudentViewController@message") }}"><i class="left material-icons">email</i>私信</a></li>
                     <li><a href="{{ action("StudentAuth\\SLoginController@logout") }}"><i class="left material-icons">input</i>注销</a></li>
                 @endif
             </ul>

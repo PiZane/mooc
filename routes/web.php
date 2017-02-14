@@ -17,22 +17,23 @@ Route::get('/', "StudentViewController@index");
 /*
  * 课程课时
  */
-Route::get('course/{courseId}', "StudentViewController@course");
-Route::get('lesson/{courseId}/{lessonId}', "StudentViewController@lesson");
+Route::get ('course/{courseId}', "StudentViewController@course");
+Route::get ('lesson/{courseId}/{lessonId}', "StudentViewController@lesson");
 Route::post('joinCourse/{courseId}', "StudentActionController@joinCourse");
 
 /*
  * 个人主页
  */
-Route::get('profile', "StudentViewController@profile");
+Route::get ('profile', "StudentViewController@profile");
 Route::post('edit/profile', "StudentActionController@editProfile");
 Route::post('edit/avatar', "StudentActionController@editAvatar");
-Route::post('edit/password', "StudentActionController@changePassword");
+Route::post('edit/password', "StudentActionController@editPassword");
 
 /*
  * 私信
  */
-Route::get('message', "StudentViewController@message");
+Route::get ('message', "StudentViewController@message");
+Route::post('sendMessage', "StudentActionController@sendMessage");
 
 /*
  * 评论

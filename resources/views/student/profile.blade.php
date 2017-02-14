@@ -47,7 +47,7 @@
                         </form>
                     </div>
                     <div id="courses">
-                        <div class="col m10 offset-m1 s12">
+                        <div class="col s12 m10 l8 offset-m1 offset-l2">
                             <div class="collection with-header">
                                 <div class="collection-header"><h4 class="blue-text">已选课程</h4></div>
                             @foreach($studentCourses as $course)

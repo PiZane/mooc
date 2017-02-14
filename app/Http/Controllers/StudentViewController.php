@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Lesson;
 use App\Comment;
+use App\Teacher;
 
 class StudentViewController extends Controller
 {
@@ -41,7 +42,8 @@ class StudentViewController extends Controller
 
     public function message()
     {
-        return view('student.message');
+        $teachers = Teacher::query()->get();
+        return view('student.message', compact('teachers'));
     }
 
     /**

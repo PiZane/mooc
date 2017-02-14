@@ -102,6 +102,7 @@
     <script>
         var url    = '{{ action("StudentViewController@comment", $lesson->id) }}';
         var avatar = '{{ $setting->avatar }}';
+        var str    = '{!! $topComments !!}';
     </script>
     <script src="{{ asset('js/comment.js') }}"></script>
 @endsection

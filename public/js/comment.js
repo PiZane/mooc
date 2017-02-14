@@ -1,4 +1,5 @@
 getComment(url, avatar);
+getTopComments(str);
 function getComment(url, avatar) {
     if (isNull(url)) {
         return null;
@@ -23,6 +24,7 @@ function getComment(url, avatar) {
         } else {
             $('#page').append('<button class="right btn disabled">下一页</button>');
         }
+        $('.tooltipped').tooltip({delay: 30});
     });
 }
 
