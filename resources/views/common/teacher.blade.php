@@ -40,4 +40,5 @@
     Materialize.toast('{{ session('status') }}', 3000);
 </script>
 @endif
+@yield('script')
 </html>
