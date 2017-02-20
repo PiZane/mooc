@@ -14,10 +14,38 @@
                     </div>
                     <div class="card-content">
                         <div id="receivedMessages">
-
+                            <div class="col s12">
+                                @if(!empty($receivedMessages))
+                                <ul class="collapsible" data-collapsible="accordion">
+                                    @foreach($receivedMessages as $message)
+                                        @if(!empty($message->teacherSender))
+                                        <li>
+                                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{ $message->teacherSender->name }} 教师
+                                                <span class="right">{{ $message->created_at->diffForHumans() }}</span></div>
+                                            <div class="collapsible-body" style="padding: 2em;"><span>{{ $message->content }}</span></div>
+                                        </li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                                @endif
+                            </div>
                         </div>
                         <div id="sentMessages">
-
+                            <div class="col s12">
+                                @if(!empty($sentMessages))
+                                    <ul class="collapsible" data-collapsible="accordion">
+                                        @foreach($sentMessages as $message)
+                                            @if(!empty($message->teacherReceiver))
+                                                <li>
+                                                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>发送给 {{ $message->teacherReceiver->name }} 教师
+                                                        <span class="right">{{ $message->created_at->diffForHumans() }}</span></div>
+                                                    <div class="collapsible-body" style="padding: 2em;"><span>{{ $message->content }}</span></div>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </div>
                         </div>
                         <div id="writeMessage">
                             <form action="{{ action("StudentActionController@sendMessage") }}" method="post">

@@ -24,7 +24,7 @@ class Upload extends Model
             strpos($image->getClientMimeType(), 'image') !== false) {
             $extension = $image->getClientOriginalExtension()?:'png';
             $fileName = time().'_'.$userId.'.'.$extension;
-            $url = url(Storage::url($image->storeAs($path, $fileName)));
+            $url = Storage::url($image->storeAs($path, $fileName));
             if ($compress) {
                 self::compressImage(storage_path().'/app/'.$path.'/'.$fileName, $width, $height);
             }

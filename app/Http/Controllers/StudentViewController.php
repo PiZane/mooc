@@ -40,10 +40,13 @@ class StudentViewController extends Controller
         return view('student.profile', compact('studentCourses'));
     }
 
-    public function message()
+    public function message(Request $request)
     {
-        $teachers = Teacher::query()->get();
-        return view('student.message', compact('teachers'));
+        $teachers         = Teacher::query()->get();
+        $student          = $request->user;
+        $sentMessages     = $student->sentMessages()->with('teacherReceiver')->latest()->paginate(5);
+        $receivedMessages = $student->receivedMessages()->with('teacherSender')->latest()->paginate(5);
+        return view('student.message', compact('teachers', 'sentMessages', 'receivedMessages'));
     }
 
     /**
