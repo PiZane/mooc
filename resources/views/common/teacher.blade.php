@@ -26,7 +26,7 @@
         @if($teacher->admin)
             <li class="bold"><a href="{{ action("TeacherViewController@setting") }}" class="waves-effect waves-teal">站点设置</a></li>
         @endif
-        <li class="bold"><a href="#" class="waves-effect waves-teal">私信</a></li>
+        <li class="bold"><a href="{{ action("TeacherViewController@message") }}" class="waves-effect waves-teal">私信</a></li>
         <li class="bold"><a href="{{ action("TeacherAuth\\TLoginController@logout") }}" class="waves-effect waves-teal">注销</a></li>
     </ul>
 </header>

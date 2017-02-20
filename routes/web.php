@@ -83,6 +83,12 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('edit/lesson/{lessonId}', "TeacherActionController@editLesson");
 
     /*
+     * 私信管理
+     */
+    Route::get ('message', "TeacherViewController@message");
+
+
+    /*
      * 站点设置
      */
     Route::get ('setting', "TeacherViewController@setting");

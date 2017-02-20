@@ -20,7 +20,7 @@
                                     @foreach($receivedMessages as $message)
                                         @if(!empty($message->teacherSender))
                                         <li>
-                                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{ $message->teacherSender->name }} 教师
+                                            <div class="collapsible-header"><i class="material-icons">perm_identity</i>{{ $message->teacherSender->name }} 教师
                                                 <span class="right">{{ $message->created_at->diffForHumans() }}</span></div>
                                             <div class="collapsible-body" style="padding: 2em;"><span>{{ $message->content }}</span></div>
                                         </li>
@@ -37,7 +37,7 @@
                                         @foreach($sentMessages as $message)
                                             @if(!empty($message->teacherReceiver))
                                                 <li>
-                                                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>发送给 {{ $message->teacherReceiver->name }} 教师
+                                                    <div class="collapsible-header"><i class="material-icons">perm_identity</i>发送给 {{ $message->teacherReceiver->name }} 教师
                                                         <span class="right">{{ $message->created_at->diffForHumans() }}</span></div>
                                                     <div class="collapsible-body" style="padding: 2em;"><span>{{ $message->content }}</span></div>
                                                 </li>

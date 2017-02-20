@@ -78,6 +78,14 @@ class TeacherViewController extends Controller
         return view('teacher.lessonInfo', compact('course', 'lesson'));
     }
 
+    public function message(Request $request)
+    {
+        $teacher          = $request->teacher;
+        $sentMessages     = $teacher->sentMessages()->with('studentReceiver')->latest()->paginate(5);
+        $receivedMessages = $teacher->receivedMessages()->with('studentSender')->latest()->paginate(5);
+        return view('teacher.message', compact('teacher', 'sentMessages', 'receivedMessages'));
+    }
+
     /**
      * 站点设置视图
      *
