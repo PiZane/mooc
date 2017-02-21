@@ -42,6 +42,9 @@ class StudentViewController extends Controller
 
     public function message(Request $request)
     {
+        if ($request->user->type) {
+            return redirect()->action("TeacherViewController@message");
+        }
         $teachers         = Teacher::query()->get();
         $student          = $request->user;
         $sentMessages     = $student->sentMessages()->with('teacherReceiver')->latest()->paginate(5);

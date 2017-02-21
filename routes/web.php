@@ -86,7 +86,7 @@ Route::group(['prefix' => 'admin'], function () {
      * 私信管理
      */
     Route::get ('message', "TeacherViewController@message");
-
+    Route::post('sendMessage', "TeacherActionController@sendMessage");
 
     /*
      * 站点设置

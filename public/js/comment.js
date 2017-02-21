@@ -25,6 +25,7 @@ function getComment(url, avatar) {
             $('#page').append('<button class="right btn disabled">下一页</button>');
         }
         $('.tooltipped').tooltip({delay: 30});
+        Materialize.fadeInImage('#comments');
     });
 }
 

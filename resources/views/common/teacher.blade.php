@@ -40,5 +40,12 @@
     Materialize.toast('{{ session('status') }}', 3000);
 </script>
 @endif
+@if (count($errors) > 0)
+    <script>
+        @foreach ($errors->all() as $error)
+            Materialize.toast('{{ $error }}', 10000, 'red');
+        @endforeach
+    </script>
+@endif
 @yield('script')
 </html>

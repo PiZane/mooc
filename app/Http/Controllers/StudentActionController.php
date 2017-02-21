@@ -143,6 +143,12 @@ class StudentActionController extends Controller
         return '已经加入该课程';
     }
 
+    /**
+     * 学生发送私信
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function sendMessage(Request $request)
     {
         $this->validate($request, [

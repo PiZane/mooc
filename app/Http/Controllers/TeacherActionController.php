@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Upload;
 use App\Course;
 use App\Lesson;
+use App\Student;
+use App\Message;
 
 class TeacherActionController extends Controller
 {
@@ -147,6 +149,31 @@ class TeacherActionController extends Controller
         $lesson->video_content = $request->video_content;
         $lesson->save();
         return redirect()->back()->with('status', '成功修改本课时');
+    }
+
+    /**
+     * 教师发送私信
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function sendMessage(Request $request)
+    {
+        $this->validate($request, [
+            'school_id' => 'required|numeric',
+            'messageContent'  => 'required|max:1024'
+        ]);
+        $schoolId = $request->school_id;
+        $student = Student::query()->where('school_id', $schoolId)->first();
+        if (empty($student)) {
+            return redirect()->back()->withErrors('发送私信失败, 请检查学号输入是否正确');
+        }
+        $message = new Message();
+        $message->content         = $request->messageContent;
+        $message->to_student_id   = $student->id;
+        $message->from_teacher_id = $request->teacher->id;
+        $message->save();
+        return redirect()->back()->with('status', '私信发送成功');
     }
 
     /**
