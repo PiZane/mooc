@@ -151,6 +151,12 @@ class TeacherActionController extends Controller
         return redirect()->back()->with('status', '成功修改本课时');
     }
 
+    public function deleteLesson(Request $request)
+    {
+        $request->lesson->delete();
+        return '{"status":"ok"}';
+    }
+
     /**
      * 教师发送私信
      *

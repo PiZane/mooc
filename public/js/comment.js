@@ -1,11 +1,12 @@
 getComment(url, avatar);
 getTopComments(str);
-function getComment(url, avatar) {
+function getComment(url) {
     if (isNull(url)) {
         return null;
     }
-    $("#comments").empty();
     $.get(url,null,function (str) {
+        $("#comments").fadeOut(300);
+        $("#comments").empty();
         var e = JSON.parse(str);
         for (var x in e.data) {
             appendComment(e.data[x], avatar, '#comments')
@@ -14,18 +15,9 @@ function getComment(url, avatar) {
             return false;
         }
         $('#comments').append('<div id="page" class="col s12 m10 l9" style="margin-top: 1em"></div>');
-        if (e.prev_page_url) {
-            $('#page').append('<button class="left btn blue lighten-2" onclick="getComment('+"\'"+e.prev_page_url+"\',\'"+avatar+"\'"+')">上一页</button>');
-        } else {
-            $('#page').append('<button class="left btn disabled">上一页</button>');
-        }
-        if (e.next_page_url) {
-            $('#page').append('<button class="right btn blue lighten-2" onclick="getComment('+"\'"+e.next_page_url+"\',\'"+avatar+"\'"+')">下一页</button>');
-        } else {
-            $('#page').append('<button class="right btn disabled">下一页</button>');
-        }
+        pagination(e, '#page', 'getComment', url.split('?')[0]+'?page=');
         $('.tooltipped').tooltip({delay: 30});
-        Materialize.fadeInImage('#comments');
+        $("#comments").fadeIn(300);
     });
 }
 

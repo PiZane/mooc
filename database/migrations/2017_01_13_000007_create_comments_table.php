@@ -21,9 +21,9 @@ class CreateCommentsTable extends Migration
             $table->unsignedInteger('teacher_id')->nullable();
             $table->unsignedInteger('student_id')->nullable();
             $table->unsignedInteger('lesson_id')->nullable();
-            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('set null');
-            $table->foreign('student_id')->references('id')->on('students')->onDelete('set null');
-            $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('set null');
+            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('CASCADE');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('CASCADE');
+            $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('CASCADE');
             $table->timestamps();
         });
     }

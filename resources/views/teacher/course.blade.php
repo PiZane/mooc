@@ -25,7 +25,7 @@
                             <td><span class="flow-text">{{ $course->created_at->diffForHumans() }}</span></td>
                             <td>
                                 <a class="btn blue" href="{{ action("TeacherViewController@courseInfo", ['courseId'=>$course->id]) }}">查看课程</a>
-                                <a class="btn" href="{{ action("TeacherViewController@createLesson", ['courseId'=>$course->id]) }}">添加章节</a>
+                                <a class="btn" href="{{ action("TeacherViewController@createLesson", ['courseId'=>$course->id]) }}">添加课时</a>
                             </td>
                         </tr>
                     @endforeach

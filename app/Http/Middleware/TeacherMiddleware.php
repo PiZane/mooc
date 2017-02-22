@@ -27,7 +27,7 @@ class TeacherMiddleware
                 return redirect()->back()->with('status', '该课程不属于您');
             }
         }
-        //如果路由参数存在章节 ID , 则获取章节实例并验证权限
+        //如果路由参数存在章节 ID , 则获取课时实例并验证权限
         if (!empty($request->lessonId)) {
             $request->lesson = Lesson::findOrFail($request->lessonId);
             if ($request->lesson->teacher_id !== $request->teacher->id) {

@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
     $('.modal').modal();
     $('select').material_select();
     $('.collapsible').collapsible();
@@ -34,4 +34,44 @@ function joinCourse(url, token) {
         }, function ($e) {
         Materialize.toast($e, 3000);
     });
+}
+
+function pagination(e, el, functionName, url) {
+    if (e.last_page > 1) {
+        if (e.current_page == 1) {
+            var prevPage = '<li class="disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li>';
+        } else {
+            var prevPage = '<li><a class="waves-effect" rel="prev" onclick="'+functionName+'(\''+ e.prev_page_url +'\')"><i class="material-icons">chevron_left</i></a></li>';
+        }
+        if (e.current_page == e.last_page) {
+            var nextPage = '<li class="disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>';
+        } else {
+            var nextPage = '<li><a class="waves-effect" rel="next" onclick="'+functionName+'(\''+ e.next_page_url +'\')"><i class="material-icons">chevron_right</i></a></li>';
+        }
+        if ((e.current_page - 2) > 0) {
+            var i = e.current_page - 2;
+            if ((e.current_page + 2) > e.last_page) {
+                var max = e.last_page;
+                var i = max - 4;
+            } else {
+                var max = e.current_page + 2;
+            }
+        } else {
+            var i = 1;
+            if (e.last_page < 5) {
+                var max = e.last_page;
+            } else {
+                var max = 5;
+            }
+        }
+        var li = '';
+        for(; i<=max; i++) {
+            if (e.current_page == i) {
+                li = li + '<li class="active waves-effect"><a href="#">'+ i +'</a></li>';
+            } else {
+                li = li + '<li class="waves-effect" onclick="'+functionName+'(\''+ url + i + '\')"><a >'+i+'</a></li>';
+            }
+        }
+        $(el).append('<ul class="pagination center">'+prevPage+li+nextPage+'</ul>');
+    }
 }

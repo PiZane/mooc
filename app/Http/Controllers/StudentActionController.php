@@ -136,7 +136,7 @@ class StudentActionController extends Controller
         if ($user->type) {
             return '您的身份是教师,无需加入课程';
         }
-        if (empty($course->students()->find($user->id))){
+        if (empty($course->students()->find($user->id))) {
             $course->students()->attach($user->id);
             return '成功加入课程';
         }

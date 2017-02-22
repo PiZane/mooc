@@ -27,10 +27,10 @@
             <div class="col s12 m5">
                 <div class="card-panel">
                     <h4>课程公告</h4>
-                    @if(empty($course->board))
+                    @if(empty($course->broad))
                         <p class="flow-text center-align">暂无公告</p>
                     @else
-                        <p>{{ $course->board }}</p>
+                        <p>{{ $course->broad }}</p>
                     @endif
                 </div>
             </div>

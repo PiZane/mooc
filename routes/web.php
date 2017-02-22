@@ -75,12 +75,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('delete/course/{courseId}', "TeacherActionController@deleteCourse");
 
     /*
-     * 章节管理
+     * 课时管理
      */
     Route::get ('lesson/{courseId}/{lessonId}', "TeacherViewController@lessonInfo");
     Route::get ('create/lesson/{courseId}', "TeacherViewController@createLesson");
     Route::post('create/lesson/{courseId}', "TeacherActionController@createLesson");
     Route::post('edit/lesson/{lessonId}', "TeacherActionController@editLesson");
+    Route::post('delete/lesson/{lessonId}', "TeacherActionController@deleteLesson");
 
     /*
      * 私信管理

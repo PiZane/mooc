@@ -28,14 +28,14 @@
             <div class="row">
                 <div class="col s12">
                     <div class="collection with-header">
-                        <div class="teal lighten-2 collection-header"><h4 class="white-text">章节管理</h4></div>
+                        <div class="teal lighten-2 collection-header"><h4 class="white-text">课时管理</h4></div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 @foreach($lessons as $lesson)
                     <div class="col s12 m4">
-                        <div class="card small">
+                        <div class="card ">
                             <div class="card-image">
                                 <img src="{{ $lesson->getImage() }}">
                             </div>
@@ -43,7 +43,8 @@
                                 <span class="card-title">{{ $lesson->title }}</span>
                             </div>
                             <div class="card-action">
-                                <a href="{{ action("TeacherViewController@lessonInfo", [$course->id, $lesson->id]) }}">查看章节</a>
+                                <a class="modal-trigger waves-effect waves-light btn" href="{{ action("TeacherViewController@lessonInfo", [$course->id, $lesson->id]) }}">查看课时</a>
+                                <a class="modal-trigger waves-effect waves-light btn red" onclick="deleteAlert('{{ action("TeacherActionController@deleteLesson", $lesson->id) }}', '{{ csrf_token() }}')">删除课时</a>
                             </div>
                         </div>
                     </div>
