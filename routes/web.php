@@ -33,6 +33,8 @@ Route::post('edit/password', "StudentActionController@editPassword");
  * 私信
  */
 Route::get ('message', "StudentViewController@message");
+Route::get ('getSentMessages', "StudentViewController@getSentMessages");
+Route::get ('getReceivedMessages', "StudentViewController@getReceivedMessages");
 Route::post('sendMessage', "StudentActionController@sendMessage");
 
 /*
@@ -87,6 +89,8 @@ Route::group(['prefix' => 'admin'], function () {
      * 私信管理
      */
     Route::get ('message', "TeacherViewController@message");
+    Route::get ('getSentMessages', "TeacherViewController@getSentMessages");
+    Route::get ('getReceivedMessages', "TeacherViewController@getReceivedMessages");
     Route::post('sendMessage', "TeacherActionController@sendMessage");
 
     /*

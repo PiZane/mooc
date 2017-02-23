@@ -48,20 +48,25 @@ function pagination(e, el, functionName, url) {
         } else {
             var nextPage = '<li><a class="waves-effect" rel="next" onclick="'+functionName+'(\''+ e.next_page_url +'\')"><i class="material-icons">chevron_right</i></a></li>';
         }
+        var i = 1;
+        var max = 5;
         if ((e.current_page - 2) > 0) {
-            var i = e.current_page - 2;
+            i = e.current_page - 2;
             if ((e.current_page + 2) > e.last_page) {
                 var max = e.last_page;
-                var i = max - 4;
+                if (max - 4 < 1) {
+                    i = 1
+                } else {
+                    i = max - 4;
+                }
             } else {
-                var max = e.current_page + 2;
+                max = e.current_page + 2;
             }
         } else {
-            var i = 1;
             if (e.last_page < 5) {
-                var max = e.last_page;
+                max = e.last_page;
             } else {
-                var max = 5;
+                max = 5;
             }
         }
         var li = '';

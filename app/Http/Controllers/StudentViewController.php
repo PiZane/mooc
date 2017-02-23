@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Lesson;
 use App\Comment;
 use App\Teacher;
+use App\Message;
 
 class StudentViewController extends Controller
 {
@@ -40,16 +41,44 @@ class StudentViewController extends Controller
         return view('student.profile', compact('studentCourses'));
     }
 
+    /**
+     * 显示私信视图
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function message(Request $request)
     {
         if ($request->user->type) {
             return redirect()->action("TeacherViewController@message");
         }
-        $teachers         = Teacher::query()->get();
-        $student          = $request->user;
-        $sentMessages     = $student->sentMessages()->with('teacherReceiver')->latest()->paginate(5);
-        $receivedMessages = $student->receivedMessages()->with('teacherSender')->latest()->paginate(5);
-        return view('student.message', compact('teachers', 'sentMessages', 'receivedMessages'));
+        $teachers = Teacher::query()->get();
+        return view('student.message', compact('teachers'));
+    }
+
+    /**
+     * 获取接收的私信以 Json 格式返回
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function getReceivedMessages(Request $request)
+    {
+        $receivedMessages = $request->user->receivedMessages()->with('teacherSender')->latest()->paginate(5);
+        $receivedMessages = Message::getCompleteMessages($receivedMessages);
+        return json_encode($receivedMessages);
+    }
+
+    /**
+     * 获取发送的私信以 Json 格式返回
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function getSentMessages(Request $request)
+    {
+        $sentMessages = $request->user->sentMessages()->with('teacherReceiver')->latest()->paginate(5);
+        return json_encode(Message::getCompleteMessages($sentMessages));
     }
 
     /**
@@ -99,7 +128,7 @@ class StudentViewController extends Controller
 
         //获取置顶评论
         $topComments = $lesson->comments()->where('top', 1)->orderBy('created_at', 'DESC')->take(3)->get();
-        $topComments = Comment::getAllCompleteComment($topComments);
+        $topComments = Comment::getCompleteComments($topComments);
 
         return view('student.lesson', compact('course', 'lesson', 'lessons', 'topComments'));
     }
@@ -122,7 +151,9 @@ class StudentViewController extends Controller
                     ->latest()
                     ->with('teacher', 'student', 'reply')
                     ->paginate(3);
-        $comments = Comment::getAllCompleteComment($comments);
+        //完善评论信息
+        $comments = Comment::getCompleteComments($comments);
+
         return json_encode($comments);
     }
 }

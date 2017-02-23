@@ -15,36 +15,10 @@
                         </div>
                         <div class="card-content">
                             <div id="receivedMessages">
-                                @if(!empty($receivedMessages))
-                                    <ul class="collapsible" style="box-shadow: none" data-collapsible="accordion">
-                                        @foreach($receivedMessages as $message)
-                                            @if(!empty($message->studentSender))
-                                                <li>
-                                                    <div class="collapsible-header"><i class="material-icons">perm_identity</i>来自: {{ $message->studentSender->name }} 同学
-                                                        <span class="right">{{ $message->created_at->diffForHumans() }}</span></div>
-                                                    <div class="collapsible-body" style="padding: 2em;"><span>{{ $message->content }}</span></div>
-                                                </li>
-                                            @endif
-                                        @endforeach
-                                    </ul>
-                                    {{ $receivedMessages->links() }}
-                                @endif
+                                <div id="receivedMessagesDiv"></div>
                             </div>
                             <div id="sentMessages">
-                                @if(!empty($sentMessages))
-                                    <ul class="collapsible" style="box-shadow: none" data-collapsible="accordion">
-                                        @foreach($sentMessages as $message)
-                                            @if(!empty($message->studentReceiver))
-                                                <li>
-                                                    <div class="collapsible-header"><i class="material-icons">email</i>发送给: {{ $message->studentReceiver->name }} 同学
-                                                        <span class="right">{{ $message->created_at->diffForHumans() }}</span></div>
-                                                    <div class="collapsible-body" style="padding: 2em;"><span>{{ $message->content }}</span></div>
-                                                </li>
-                                            @endif
-                                        @endforeach
-                                    </ul>
-                                    {{ $sentMessages->links() }}
-                                @endif
+                                <div id="sentMessagesDiv"></div>
                             </div>
                             <div id="writeMessage">
                                 <form action="{{ action("TeacherActionController@sendMessage") }}" method="post">
@@ -70,4 +44,9 @@
             </div>
         </div>
     </main>
+@endsection
+@section('script')
+    <script src="{{ asset('js/message.js') }}"></script>
+    <script>getMessages('{{ action("TeacherViewController@getReceivedMessages") }}')</script>
+    <script>getMessages('{{ action("TeacherViewController@getSentMessages") }}')</script>
 @endsection

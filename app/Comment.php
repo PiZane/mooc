@@ -57,7 +57,7 @@ class Comment extends Model
      * @param  $comments
      * @return mixed
      */
-    static function getAllCompleteComment($comments)
+    static function getCompleteComments($comments)
     {
         foreach ($comments as $key => $comment) {
             $comment = Comment::completeComment($comment);

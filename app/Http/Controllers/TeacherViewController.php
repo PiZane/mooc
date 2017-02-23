@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Teacher;
@@ -78,12 +79,39 @@ class TeacherViewController extends Controller
         return view('teacher.lessonInfo', compact('course', 'lesson'));
     }
 
-    public function message(Request $request)
+    /**
+     * 显示私信视图
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function message()
     {
-        $teacher          = $request->teacher;
-        $sentMessages     = $teacher->sentMessages()->with('studentReceiver')->latest()->paginate(5);
-        $receivedMessages = $teacher->receivedMessages()->with('studentSender')->latest()->paginate(5);
-        return view('teacher.message', compact('teacher', 'sentMessages', 'receivedMessages'));
+        return view('teacher.message');
+    }
+
+    /**
+     * 获取接收的私信以 Json 格式返回
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function getReceivedMessages(Request $request)
+    {
+        $receivedMessages = $request->teacher->receivedMessages()->with('studentSender')->latest()->paginate(5);
+        $receivedMessages = Message::getCompleteMessages($receivedMessages);
+        return json_encode($receivedMessages);
+    }
+
+    /**
+     * 获取发送的私信以 Json 格式返回
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function getSentMessages(Request $request)
+    {
+        $sentMessages = $request->teacher->sentMessages()->with('studentReceiver')->latest()->paginate(5);
+        return json_encode(Message::getCompleteMessages($sentMessages));
     }
 
     /**
