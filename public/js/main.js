@@ -7,6 +7,20 @@ $(document).ready(function() {
     $(".dropdown-button").dropdown({belowOrigin: true});
 });
 
+$(function () {
+    $(window).scroll(function () {
+        if ($(this).scrollTop() != 0) {
+            $("#toTop").fadeIn();
+        } else {
+            $("#toTop").fadeOut();
+        }
+    });
+    $("body").append('<div id=\"toTop\" class="red lighten-2 white-text" style=\"text-align:center;padding:10px 13px 7px 13px;position:fixed;bottom:30px;right:30px;cursor:pointer;display:none;font-family:verdana;font-size:22px;\">^</div>');
+    $("#toTop").click(function () {
+        $("body,html").animate({scrollTop: 0}, 800);
+    });
+})
+
 function deleteAlert(url, token) {
     if(confirm("确认要删除？")){
         $.post(url,{

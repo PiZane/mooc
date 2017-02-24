@@ -49,7 +49,11 @@
     </div>
 @endsection
 @section('script')
+    <script>
+        var token     = '{{ csrf_token() }}';
+        var deleteUrl = '{{ action("StudentActionController@deleteMessage", '/deleteId') }}';
+        var receivedMessagesUrl = '{{ action("StudentViewController@getReceivedMessages") }}';
+        var sentMessagesUrl = '{{ action("StudentViewController@getSentMessages") }}';
+    </script>
     <script src="{{ asset('js/message.js') }}"></script>
-    <script>getMessages('{{ action("StudentViewController@getReceivedMessages") }}')</script>
-    <script>getMessages('{{ action("StudentViewController@getSentMessages") }}')</script>
 @endsection

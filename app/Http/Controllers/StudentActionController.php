@@ -144,7 +144,7 @@ class StudentActionController extends Controller
     }
 
     /**
-     * 学生发送私信
+     * 发送私信
      *
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
@@ -162,5 +162,23 @@ class StudentActionController extends Controller
         $message->from_student_id = $request->user->id;
         $message->save();
         return redirect()->back()->with('status', '私信发送成功');
+    }
+
+    /**
+     * 删除私信
+     *
+     * @param Request $request
+     * @param $messageId
+     * @return string
+     */
+    public function deleteMessage(Request $request, $messageId)
+    {
+        $message = Message::query()->findOrFail($messageId);
+        if ($message->to_student_id != $request->user->id) {
+            return '该私信不属于您';
+        }
+        $message->read = 1;
+        $message->save();
+        return '删除成功';
     }
 }

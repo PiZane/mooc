@@ -84,7 +84,7 @@ function submitComment() {
         type: "post",
         url: $('#commentForm').attr('action'),
         data: $('#commentForm').serialize(),// 你的formid
-        async: false,
+        async: true,
         error: function(request) {
             Materialize.toast("评论失败, 请刷新页面后重试", 3000);
         },

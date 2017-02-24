@@ -1,3 +1,5 @@
+getMessages(receivedMessagesUrl);
+getMessages(sentMessagesUrl);
 function getMessages(url) {
     if (isNull(url)) {
         return null;
@@ -36,6 +38,7 @@ function getMessages(url) {
 function appendMessages(data, el, proType, messageType) {
     var pro  = '';
     var text = '';
+    var deleteHtml = '';
     var userName = '未知';
     if (proType) {
         pro = ' 同学';
@@ -45,6 +48,7 @@ function appendMessages(data, el, proType, messageType) {
     if (messageType) {
         text = '来自: ';
         userName = data.senderName;
+        deleteHtml = '<div class="right-align"><span class="btn red lighten-3" onclick="deleteMessage(\''+data.id+'\')">删除</span></div>'
     } else {
         text = '发送给: ';
         userName = data.receiverName;
@@ -53,5 +57,18 @@ function appendMessages(data, el, proType, messageType) {
         +pro+'<span class="right">'
         +data.time
         +'</span></div><div class="collapsible-body" style="padding: 2em;"><span>'
-        +data.content+'</span><div class="right-align"><span class="btn red lighten-3">删除</span></div></div></li>');
+        +data.content+'</span>'+deleteHtml+'</div></li>');
+}
+
+function deleteMessage(id) {
+    var url = deleteUrl.split('/deleteId')[0] + id;
+    if(confirm("确认要删除？")){
+        $.post(url,{
+                '_token' : token
+            }, function (e) {
+                getMessages(receivedMessagesUrl);
+                Materialize.toast(e, 3000);
+            }
+        );
+    }
 }

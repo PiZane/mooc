@@ -36,6 +36,7 @@ Route::get ('message', "StudentViewController@message");
 Route::get ('getSentMessages', "StudentViewController@getSentMessages");
 Route::get ('getReceivedMessages', "StudentViewController@getReceivedMessages");
 Route::post('sendMessage', "StudentActionController@sendMessage");
+Route::post('deleteMessage/{messageId}', "StudentActionController@deleteMessage");
 
 /*
  * 评论
@@ -92,6 +93,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get ('getSentMessages', "TeacherViewController@getSentMessages");
     Route::get ('getReceivedMessages', "TeacherViewController@getReceivedMessages");
     Route::post('sendMessage', "TeacherActionController@sendMessage");
+    Route::post('deleteMessage/{messageId}', "TeacherActionController@deleteMessage");
 
     /*
      * 站点设置
