@@ -17,6 +17,7 @@ class CreateMessagesTable extends Migration
             $table->increments('id');
             $table->text('content');
             $table->boolean('read')->default(0);
+            $table->boolean('delete')->default(0);
             $table->unsignedInteger('from_teacher_id')->nullable();
             $table->unsignedInteger('from_student_id')->nullable();
             $table->unsignedInteger('to_teacher_id')->nullable();

@@ -177,7 +177,7 @@ class StudentActionController extends Controller
         if ($message->to_student_id != $request->user->id) {
             return '该私信不属于您';
         }
-        $message->read = 1;
+        $message->delete = 1;
         $message->save();
         return '删除成功';
     }

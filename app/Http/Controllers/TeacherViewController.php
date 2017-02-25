@@ -97,7 +97,7 @@ class TeacherViewController extends Controller
      */
     public function getReceivedMessages(Request $request)
     {
-        $receivedMessages = $request->teacher->receivedMessages()->where('read', 0)->with('studentSender')->latest()->paginate(5);
+        $receivedMessages = $request->teacher->receivedMessages()->where('delete', 0)->with('studentSender')->latest()->paginate(5);
         $receivedMessages = Message::getCompleteMessages($receivedMessages);
         return json_encode($receivedMessages);
     }

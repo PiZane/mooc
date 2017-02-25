@@ -195,7 +195,7 @@ class TeacherActionController extends Controller
         if ($message->to_teacher_id != $request->teacher->id) {
             return '该私信不属于您';
         }
-        $message->read = 1;
+        $message->delete = 1;
         $message->save();
         return '删除成功';
     }
