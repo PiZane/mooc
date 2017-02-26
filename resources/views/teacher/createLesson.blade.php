@@ -1,4 +1,5 @@
 @extends('common.teacher')
+@section('title')添加课时@endsection
 @section('main')
 <main>
     <div class="my-main">

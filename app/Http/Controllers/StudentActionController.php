@@ -29,6 +29,11 @@ class StudentActionController extends Controller
             'name' => 'required|max:255',
             'class' => 'required|max:255',
             'school_id' => 'required|alpha_num|max:255'
+        ], [
+            'name.required' => '姓名必须填写',
+            'class.required' => '班级必须填写',
+            'school_id.required' => '学号必须填写',
+            'school_id.alpha_num' => '学号必须为字母或数字'
         ]);
         $user = $request->user;
         if (empty($user) || $user->type) {
@@ -52,6 +57,8 @@ class StudentActionController extends Controller
     {
         $this->validate($request, [
             'avatar' => 'required',
+        ], [
+            'avatar.required' => '头像内容不能为空',
         ]);
         $user = $request->user;
         if (empty($user)) {
@@ -75,6 +82,10 @@ class StudentActionController extends Controller
         $this->validate($request, [
             'oldPassword' => 'required|min:6',
             'newPassword' => 'required|min:6|confirmed',
+        ], [
+            'oldPassword.required' => '当前密码必须填写',
+            'newPassword.required' => '新密码必须填写',
+            'newPassword.min' => '新密码不能少于6位字符',
         ]);
         $user = $request->user;
         $student = Student::query()->find($user->id);
@@ -100,6 +111,9 @@ class StudentActionController extends Controller
         $this->validate($request, [
             'lessonId' => 'required|numeric',
             'commentContent'  => 'required|max:1024'
+        ], [
+            'commentContent.required' => '评论内容不能为空',
+            'commentContent.max' => '评论内容长度超出限制'
         ]);
 
         //验证登录
@@ -154,6 +168,10 @@ class StudentActionController extends Controller
         $this->validate($request, [
             'teacherId' => 'required|numeric',
             'messageContent'  => 'required|max:1024'
+        ], [
+            'teacherId.required' => '必须选择教师',
+            'messageContent.required' => '内容不可为空',
+            'messageContent.max' => '内容长度超出限制'
         ]);
         $teacher = Teacher::query()->findOrFail($request->teacherId);
         $message = new Message();

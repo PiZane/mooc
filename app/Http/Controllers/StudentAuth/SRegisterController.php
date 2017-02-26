@@ -51,6 +51,16 @@ class SRegisterController extends Controller
             'class' => 'required|max:255',
             'email' => 'required|email|max:255|unique:students',
             'password' => 'required|min:6|confirmed',
+        ], [
+            'school_id.required' => '学号必须填写',
+            'school_id.alpha_num' => '学号必须为字母或数字',
+            'name.required' => '姓名必须填写',
+            'class.required' => '班级必须填写',
+            'email.required' => 'email必须填写',
+            'email.unique' => 'email已被注册',
+            'password.required' => '密码必须填写',
+            'password.confirmed' => '两次密码输入不一致',
+            'password.min' => '密码长度不能短于6位字符'
         ]);
     }
 

@@ -49,6 +49,12 @@ class TRegisterController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:teachers',
             'password' => 'required|min:6|confirmed',
+        ], [
+            'name.required' => '姓名必须填写',
+            'email.required' => '邮件必须填写',
+            'password.required' => '密码必须填写',
+            'password.confirmed' => '两次密码输入不一致',
+            'password.min' => '密码长度不能短于6位'
         ]);
     }
 

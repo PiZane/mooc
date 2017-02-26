@@ -18,7 +18,7 @@
                             </div>
                             <div class="card-action" style="position: relative;">
                                 <a class="modal-trigger waves-effect waves-light btn" href="#editCourseModal">修改课程</a>
-                                <a class="modal-trigger waves-effect waves-light btn" href="{{ action("TeacherViewController@createLesson", $course->id) }}">添加章节</a>
+                                <a class="modal-trigger waves-effect waves-light btn" href="{{ action("TeacherViewController@createLesson", $course->id) }}">添加课时</a>
                                 <a class="modal-trigger waves-effect waves-light btn red" onclick="deleteAlert('{{ action("TeacherActionController@deleteCourse", $course->id) }}', '{{ csrf_token() }}')">删除课程</a>
                             </div>
                         </div>

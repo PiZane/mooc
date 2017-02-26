@@ -11,9 +11,6 @@ function getComment(url) {
         for (var x in e.data) {
             appendComment(e.data[x], avatar, '#comments')
         }
-        if (e.total < 4) {
-            return false;
-        }
         $('#comments').append('<div id="page" class="col s12 m10 l9" style="margin-top: 1em"></div>');
         pagination(e, '#page', 'getComment', url.split('?')[0]+'?page=');
         $('.tooltipped').tooltip({delay: 30});

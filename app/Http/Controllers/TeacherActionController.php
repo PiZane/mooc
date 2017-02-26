@@ -31,6 +31,10 @@ class TeacherActionController extends Controller
         //验证表单
         $this->validate($request, [
             'name' => 'required|unique:courses|max:255',
+        ], [
+            'name.required' => '课程名不可为空',
+            'name.courses' => '课程名重复',
+            'name.max' => '课程名长度超出限制',
         ]);
         //图片上传
         $image_url = Upload::imageUpload($request->file('image'), $request->teacher->id, 'public/course');
@@ -57,6 +61,10 @@ class TeacherActionController extends Controller
         //验证表单
         $this->validate($request, [
             'name' => 'required|max:255',
+        ], [
+            'name.required' => '课程名不可为空',
+            'name.courses' => '课程名重复',
+            'name.max' => '课程名长度超出限制',
         ]);
         //确认修改后的课程名不与其它课程重名
         $temp = Course::where('name', $request->name)->first();
@@ -99,6 +107,9 @@ class TeacherActionController extends Controller
         $this->validate($request, [
             'title' => 'required|max:255',
             'type'  => 'required'
+        ], [
+            'title.required' => '课时标题不可为空',
+            'title.max' => '课时标题超出长度限制'
         ]);
         //视频内容认证 视频链接和html视频代码不能全为空
         if (!$request->type &&
@@ -132,6 +143,9 @@ class TeacherActionController extends Controller
         $this->validate($request, [
             'title' => 'required|max:255',
             'type'  => 'required'
+        ], [
+            'title.required' => '课时标题不可为空',
+            'title.max' => '课时标题超出长度限制'
         ]);
         //视频内容认证 视频链接和html视频代码不能全为空
         if (!$request->type &&
@@ -168,6 +182,10 @@ class TeacherActionController extends Controller
         $this->validate($request, [
             'school_id' => 'required|numeric',
             'messageContent'  => 'required|max:1024'
+        ], [
+            'school_id.required' => '学号不可为空',
+            'messageContent.required' => '内容不可为空',
+            'messageContent.max' => '内容长度超出限制'
         ]);
         $schoolId = $request->school_id;
         $student = Student::query()->where('school_id', $schoolId)->first();
