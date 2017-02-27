@@ -41,6 +41,14 @@
                 </div>
             @endif
         </div>
+        @if(!empty($lesson->board))
+            <div class="col s12">
+                <div class="card-panel">
+                    <h4 class="teal-text">本课时公告</h4>
+                    <p>{{ $lesson->board }}</p>
+                </div>
+            </div>
+        @endif
         <div class="row" id="lessonMenu">
             <div class="col s12">
                 <ul class="tabs my-menu-tabs tabs-transparent teal lighten-2 white-text">

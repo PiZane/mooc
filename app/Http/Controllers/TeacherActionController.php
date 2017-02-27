@@ -43,7 +43,7 @@ class TeacherActionController extends Controller
         $course->image_url   = $image_url;
         $course->name        = $request->name;
         $course->description = $request->description;
-        $course->broad       = $request->broad;
+        $course->board       = $request->board;
         $course->teacher_id  = $request->teacher->id;
         $course->save();
         return redirect()->back()->with('status', '成功创建课程');
@@ -78,7 +78,7 @@ class TeacherActionController extends Controller
         }
         $course->name        = $request->name;
         $course->description = $request->description;
-        $course->broad       = $request->broad;
+        $course->board       = $request->board;
         $course->save();
         return redirect()->back()->with('status', '成功修改课程信息');
     }

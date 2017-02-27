@@ -17,7 +17,7 @@ class CreateCoursesTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->text('description')->nullable();
-            $table->text('broad')->nullable();
+            $table->text('board')->nullable();
             $table->string('image_url')->nullable();
             $table->unsignedInteger('teacher_id')->nullable();
             $table->unsignedInteger('student_id')->nullable();

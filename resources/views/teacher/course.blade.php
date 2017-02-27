@@ -65,8 +65,8 @@
                     </div>
                     <div class="input-field">
                         <i class="material-icons prefix">view_agenda</i>
-                        <label for="broad">公告</label>
-                        <textarea class="materialize-textarea" id="broad" name="broad"></textarea>
+                        <label for="board">公告</label>
+                        <textarea class="materialize-textarea" id="board" name="board"></textarea>
                     </div>
             </div>
             <div class="modal-footer">
