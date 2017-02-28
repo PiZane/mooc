@@ -27,7 +27,7 @@ class StudentViewController extends Controller
     }
 
     /**
-     * 显示个人主页
+     * 显示个人主页视图
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */

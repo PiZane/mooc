@@ -23,4 +23,11 @@
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 <script src="{{ asset("./js/main.js") }}"></script>
+@if (count($errors) > 0)
+    <script>
+        @foreach ($errors->all() as $error)
+            Materialize.toast('{{ $error }}', 10000, 'red');
+        @endforeach
+    </script>
+@endif
 </html>

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Upload;
 use App\Course;
 use App\Lesson;
 use App\Student;
 use App\Message;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class TeacherActionController extends Controller
 {
@@ -216,6 +217,72 @@ class TeacherActionController extends Controller
         $message->delete = 1;
         $message->save();
         return '删除成功';
+    }
+
+    /**
+     * 修改个人信息
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function editProfile(Request $request)
+    {
+        //验证表单
+        $this->validate($request, [
+            'name' => 'required|max:255',
+        ], [
+            'name.required' => '姓名必须填写'
+        ]);
+        $teacher = $request->teacher;
+        $teacher->name      = $request->name;
+        $teacher->save();
+        return redirect()->back()->with('status', '个人信息已更新');
+    }
+
+    /**
+     * 修改头像
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function editAvatar(Request $request)
+    {
+        $this->validate($request, [
+            'avatar' => 'required',
+        ], [
+            'avatar.required' => '头像内容不能为空',
+        ]);
+        $teacher = $request->teacher;
+        $avatar = Upload::imageUpload($request->avatar, $teacher->id, 'public/teacher/avatar', true, 120, 120);
+        $teacher->image_url = $avatar;
+        $teacher->save();
+        return '头像修改成功';
+    }
+
+    /**
+     * 修改密码
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function editPassword(Request $request)
+    {
+        $this->validate($request, [
+            'oldPassword' => 'required|min:6',
+            'newPassword' => 'required|min:6|confirmed',
+        ], [
+            'oldPassword.required' => '当前密码必须填写',
+            'newPassword.required' => '新密码必须填写',
+            'newPassword.min' => '新密码不能少于6位字符'
+        ]);
+        $teacher = $request->teacher;
+        if (Hash::check($request->oldPassword, $teacher->password)) {
+            $password = bcrypt($request->newPassword);
+            $teacher->password = $password;
+            $teacher->save();
+            return redirect()->action("TeacherAuth\\TLoginController@logout")->with('status', '密码修改成功');
+        } else {
+            return redirect()->back()->withErrors('原密码错误');
+        }
     }
 
     /**

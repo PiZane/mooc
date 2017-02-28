@@ -22,8 +22,13 @@
                     <li><a class="btn teal accent-4 waves-effect waves-light" href="#studentRegister">注册</a></li>
                 @else
                     <ul id="dropdown" class="dropdown-content">
-                        <li><a class="waves-effect waves-light" href="{{ action("StudentViewController@profile") }}">个人主页</a></li>
-                        <li><a class="waves-effect waves-light" href="@if($user->type){{ action("TeacherViewController@message") }}@else{{ action("StudentViewController@message") }}@endif">私信</a></li>
+                        @if($user->type)
+                            <li><a class="waves-effect waves-light" href="{{ action("TeacherViewController@profile") }}">个人主页</a></li>
+                            <li><a class="waves-effect waves-light" href="{{ action("TeacherViewController@message") }}">私信</a></li>
+                        @else
+                            <li><a class="waves-effect waves-light" href="{{ action("StudentViewController@profile") }}">个人主页</a></li>
+                            <li><a class="waves-effect waves-light" href="{{ action("StudentViewController@message") }}">私信</a></li>
+                        @endif
                         <li><a class="waves-effect waves-light" href="{{ action("StudentAuth\\SLoginController@logout") }}">注销</a></li>
                     </ul>
                     <li>欢迎回来,</li>

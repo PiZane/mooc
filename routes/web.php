@@ -69,6 +69,14 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get ('/', "TeacherViewController@index");
 
     /*
+     * 个人主页
+     */
+    Route::get ('profile', "TeacherViewController@profile");
+    Route::post('edit/profile', "TeacherActionController@editProfile");
+    Route::post('edit/avatar', "TeacherActionController@editAvatar");
+    Route::post('edit/password', "TeacherActionController@editPassword");
+
+    /*
      * 课程管理
      */
     Route::get ('course', "TeacherViewController@course");

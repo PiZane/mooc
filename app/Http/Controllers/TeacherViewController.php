@@ -55,7 +55,7 @@ class TeacherViewController extends Controller
     }
 
     /**
-     * 创建章节视图
+     * 创建课时视图
      *
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -67,7 +67,7 @@ class TeacherViewController extends Controller
     }
 
     /**
-     * 章节信息视图
+     * 课时信息视图
      *
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -100,6 +100,16 @@ class TeacherViewController extends Controller
         $receivedMessages = $request->teacher->receivedMessages()->where('delete', 0)->with('studentSender')->latest()->paginate(5);
         $receivedMessages = Message::getCompleteMessages($receivedMessages);
         return json_encode($receivedMessages);
+    }
+
+    /**
+     * 显示个人主页视图
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function profile()
+    {
+        return view('teacher.profile');
     }
 
     /**
