@@ -18,6 +18,7 @@ class CreateTeachersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('description')->nullable();
             $table->string('image_url')->nullable();
             $table->boolean('admin')->default(0);
             $table->rememberToken();
