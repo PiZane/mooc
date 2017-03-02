@@ -32,6 +32,11 @@
                                             <label for="name">姓名</label>
                                             <input class="validate" id="name" name="name" type="text" value="{{ $teacher->name }}" required>
                                         </div>
+                                        <div class="input-field">
+                                            <i class="material-icons prefix">description</i>
+                                            <label for="description">个人简介</label>
+                                            <textarea class="materialize-textarea" id="description" name="description"></textarea>
+                                        </div>
                                         <button class="right btn lighten-2 waves-effect waves-light" type="submit" name="action">修改信息</button>
                                     </div>
                                 </form>

@@ -90,6 +90,7 @@ class StudentViewController extends Controller
     public function course(Request $request)
     {
         $course  = $request->course;
+        $teacher = $course->teacher;
         $lessons = Lesson::query()->where('course_id', $course->id)->latest()->paginate(9);
 
         //设置用户选课状态, 未登录或为加入课程 $joinStatus=0 加入课程后 $joinStatus=1
@@ -99,7 +100,7 @@ class StudentViewController extends Controller
             $joinStatus = $course->students()->find($request->user->id)?1:0;
         }
 
-        return view('student.course', compact('course', 'lessons', 'joinStatus'));
+        return view('student.course', compact('course', 'teacher', 'lessons', 'joinStatus'));
     }
 
     /**

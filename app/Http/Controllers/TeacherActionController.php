@@ -233,7 +233,8 @@ class TeacherActionController extends Controller
             'name.required' => '姓名必须填写'
         ]);
         $teacher = $request->teacher;
-        $teacher->name      = $request->name;
+        $teacher->name = $request->name;
+        $teacher->description = $request->description;
         $teacher->save();
         return redirect()->back()->with('status', '个人信息已更新');
     }

@@ -12,6 +12,7 @@
                         <span class="card-title activator grey-text text-darken-4">{{ $course->name }}<i class="material-icons right">more_vert</i></span>
                     </div>
                     <div class="card-action right-align">
+                        <span class="left chip">{{ $teacher->name }}</span>
                         @if($joinStatus)
                             <button class="btn disabled">已加入</button>
                         @else
@@ -36,6 +37,14 @@
             </div>
         </div>
         <div class="row">
+            @if(!empty($teacher->description))
+                <div class="col s12 m10 offset-m1">
+                    <div class="card-panel">
+                        <h4 class="teal-text lighten-2">教师简介</h4>
+                        <p>{{ $teacher->description }}</p>
+                    </div>
+                </div>
+            @endif
             <div class="col s12 m10 offset-m1">
                 <div class="collection with-header">
                     <div class="teal lighten-2 collection-header"><h4 class="white-text">课程列表</h4></div>
