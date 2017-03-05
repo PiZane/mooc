@@ -19,7 +19,7 @@
                     <div class="card my-lesson">
                         <div style="margin: 2em;font-size: 20px;">
                             <h2 class="center-align">{{ $lesson->title }}</h2>
-                            <div class="right-align">
+                            <div class="center-align">
                                 <div class="chip">发布教师: {{ $course->teacher()->first()->name }}</div>
                                 <div class="chip">创建时间: {{ $course->created_at->diffForHumans() }}</div>
                             </div>
