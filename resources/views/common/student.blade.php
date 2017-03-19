@@ -14,12 +14,16 @@
 <header>
     <nav class="nav-extended">
         <div class="nav-wrapper blue lighten-2">
-            <a href="{{ url('/') }}" class="brand-logo">{{ $setting->name }}</a>
+            <div class="row">
+            <div class="col l8 offset-l2">
+            <div class="row">
+                <a href="{{ url('/') }}" class="brand-logo">{{ $setting->name }}</a>
+            </div>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down" id="nav-mobile">
                 @if(empty($user))
-                    <li><a class="btn teal accent-4 wavess-effect waves-light" href="#studentLogin">登录</a></li>
-                    <li><a class="btn teal accent-4 waves-effect waves-light" href="#studentRegister">注册</a></li>
+                    <li><a href="#studentLogin">登录</a></li>
+                    <li><a href="#studentRegister">注册</a></li>
                 @else
                     <ul id="dropdown" class="dropdown-content">
                         @if($user->type)
@@ -46,10 +50,10 @@
                     <li><a href="{{ action("StudentAuth\\SLoginController@logout") }}"><i class="left material-icons">input</i>注销</a></li>
                 @endif
             </ul>
-            <ul class="my-menu-tabs row tabs tabs-transparent">
-                <li class="tab col l1"><a onclick="clickTab('{{ url('/') }}')">首页</a></li>
+            <ul class="my-menu-tabs tabs tabs-transparent tabs-fixed-width">
+                <li class="tab" style="max-width: 150px;"><a onclick="clickTab('{{ url('/') }}')">首页</a></li>
                 @foreach($courses as $course)
-                    <li class="tab col l1">
+                    <li class="tab" style="max-width: 150px;">
                         @if(!empty($courseId) && $course->id == $courseId)
                             <a class="active" onclick="clickTab('{{ action("StudentViewController@course", $course->id) }}')">{{ $course->name }}</a>
                         @else
@@ -58,6 +62,8 @@
                     </li>
                 @endforeach
             </ul>
+        </div>
+        </div>
         </div>
     </nav>
 </header>

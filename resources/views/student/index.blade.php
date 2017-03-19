@@ -4,14 +4,15 @@
     <div class="section red lighten-5" id="index-banner">
         <div class="row">
             <div class="container">
-                <div class="col s12 m9">
+                <div class="col s12 m8">
                     <h1 class="header center-on-small-only">{{ $setting->name }}</h1>
-                    <h4 class="light red-text text-lighten-4 center-on-small-only">学习，为更好的将来</h4>
+                    <h4 class="light grey-text text-darken-3 center-on-small-only">学习，为更好的将来</h4>
                 </div>
             </div>
             @if($lessons->count())
-            <div class="col s12 m3 hide-on-med-and-down">
-                <div class="card small">
+            <div class="col s12 m3 hide-on-med-and-down" style="margin-left: -2%">
+                <div class="
+                card">
                     <div class="card-image waves-effect waves-block waves-light">
                         <a href="{{ action("StudentViewController@lesson", [$lessons[0]->course_id, $lessons[0]->id]) }}"><img class="activator" src="{{ $lessons[0]->getImage() }}"></a>
                     </div>
@@ -19,7 +20,7 @@
                         <p class="card-title">{{ $lessons[0]->title }}</p>
                         <div class="right-align">
                             <a class="btn teal accent-4" href="{{ action("StudentViewController@lesson", [$lessons[0]->course_id, $lessons[0]->id]) }}">
-                                <i class="left material-icons">visibility</i>查看课程
+                                查看课程
                             </a>
                         </div>
                     </div>
@@ -43,7 +44,7 @@
                         <p class="card-title activator">{{ $lesson->title }}</p>
                         <div class="right-align">
                             <a class="btn teal accent-4" href="{{ action("StudentViewController@lesson", [$lesson->course_id, $lesson->id]) }}">
-                                <i class="left material-icons">visibility</i>查看课程
+                                查看课程
                             </a>
                         </div>
                     </div>
