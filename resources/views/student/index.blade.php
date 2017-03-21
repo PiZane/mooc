@@ -10,22 +10,23 @@
                 </div>
             </div>
             @if($lessons->count())
-            <div class="col s12 m3 hide-on-med-and-down" style="margin-left: -2%">
-                <div class="
-                card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <a href="{{ action("StudentViewController@lesson", [$lessons[0]->course_id, $lessons[0]->id]) }}"><img class="activator" src="{{ $lessons[0]->getImage() }}"></a>
-                    </div>
-                    <div class="card-content">
-                        <p class="card-title">{{ $lessons[0]->title }}</p>
-                        <div class="right-align">
-                            <a class="btn teal accent-4" href="{{ action("StudentViewController@lesson", [$lessons[0]->course_id, $lessons[0]->id]) }}">
-                                查看课程
-                            </a>
+                <div class="col s12 m3 hide-on-med-and-down" style="margin-left: -2%">
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <a href="{{ action("StudentViewController@lesson", [$lessons[0]->course_id, $lessons[0]->id]) }}"><img
+                                        class="activator" src="{{ $lessons[0]->getImage() }}"></a>
+                        </div>
+                        <div class="card-content">
+                            <p class="card-title">{{ $lessons[0]->title }}</p>
+                            <div class="right-align">
+                                <a class="btn teal accent-4"
+                                   href="{{ action("StudentViewController@lesson", [$lessons[0]->course_id, $lessons[0]->id]) }}">
+                                    查看课程
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             @endif
         </div>
     </div>
@@ -35,21 +36,23 @@
         </div>
         <div class="row">
             @foreach($lessons as $lesson)
-            <div class="col s12 m6 l4">
-                <div class="card small hoverable">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <a href="{{ action("StudentViewController@lesson", [$lesson->course_id, $lesson->id]) }}"><img class="activator" src="{{ $lesson->getImage() }}"></a>
-                    </div>
-                    <div class="card-content">
-                        <p class="card-title activator">{{ $lesson->title }}</p>
-                        <div class="right-align">
-                            <a class="btn teal accent-4" href="{{ action("StudentViewController@lesson", [$lesson->course_id, $lesson->id]) }}">
-                                查看课程
-                            </a>
+                <div class="col s12 m6 l4">
+                    <div class="card small hoverable">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <a href="{{ action("StudentViewController@lesson", [$lesson->course_id, $lesson->id]) }}"><img
+                                        class="activator" src="{{ $lesson->getImage() }}"></a>
+                        </div>
+                        <div class="card-content">
+                            <p class="card-title activator">{{ $lesson->title }}</p>
+                            <div class="right-align">
+                                <a class="btn teal accent-4"
+                                   href="{{ action("StudentViewController@lesson", [$lesson->course_id, $lesson->id]) }}">
+                                    查看课程
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             @endforeach
         </div>
         <div class="row">

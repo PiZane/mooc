@@ -15,55 +15,67 @@
     <nav class="nav-extended">
         <div class="nav-wrapper blue lighten-2">
             <div class="row">
-            <div class="col l8 offset-l2">
-            <div class="row">
-                <a href="{{ url('/') }}" class="brand-logo">{{ $setting->name }}</a>
-            </div>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down" id="nav-mobile">
-                @if(empty($user))
-                    <li><a href="#studentLogin">登录</a></li>
-                    <li><a href="#studentRegister">注册</a></li>
-                @else
-                    <ul id="dropdown" class="dropdown-content">
-                        @if($user->type)
-                            <li><a class="waves-effect waves-light" href="{{ action("TeacherViewController@profile") }}">个人主页</a></li>
-                            <li><a class="waves-effect waves-light" href="{{ action("TeacherViewController@message") }}">私信</a></li>
+                <div class="col l8 offset-l2">
+                    <div class="row">
+                        <a href="{{ url('/') }}" class="brand-logo">{{ $setting->name }}</a>
+                        <a href="#" data-activates="mobile-demo" class="button-collapse"><i
+                                    class="material-icons">menu</i></a>
+                    </div>
+                    <ul class="right hide-on-med-and-down" id="nav-mobile">
+                        @if(empty($user))
+                            <li><a href="#studentLogin">登录</a></li>
+                            <li><a href="#studentRegister">注册</a></li>
                         @else
-                            <li><a class="waves-effect waves-light" href="{{ action("StudentViewController@profile") }}">个人主页</a></li>
-                            <li><a class="waves-effect waves-light" href="{{ action("StudentViewController@message") }}">私信</a></li>
+                            <ul id="dropdown" class="dropdown-content">
+                                @if($user->type)
+                                    <li><a class="waves-effect waves-light"
+                                           href="{{ action("TeacherViewController@profile") }}">个人主页</a></li>
+                                    <li><a class="waves-effect waves-light"
+                                           href="{{ action("TeacherViewController@message") }}">私信</a></li>
+                                @else
+                                    <li><a class="waves-effect waves-light"
+                                           href="{{ action("StudentViewController@profile") }}">个人主页</a></li>
+                                    <li><a class="waves-effect waves-light"
+                                           href="{{ action("StudentViewController@message") }}">私信</a></li>
+                                @endif
+                                <li><a class="waves-effect waves-light"
+                                       href="{{ action("StudentAuth\\SLoginController@logout") }}">注销</a></li>
+                            </ul>
+                            <li>欢迎回来,</li>
+                            <li><a class="dropdown-button" href="#"
+                                   data-activates="dropdown">{{ $user->name }} {{ $user->type?'教师':'同学' }}<i
+                                            class="material-icons right">arrow_drop_down</i></a></li>
                         @endif
-                        <li><a class="waves-effect waves-light" href="{{ action("StudentAuth\\SLoginController@logout") }}">注销</a></li>
                     </ul>
-                    <li>欢迎回来,</li>
-                    <li><a class="dropdown-button" href="#" data-activates="dropdown">{{ $user->name }} {{ $user->type?'教师':'同学' }}<i class="material-icons right">arrow_drop_down</i></a></li>
-                @endif
-            </ul>
-            <ul class="side-nav" id="mobile-demo">
-                @if(empty($user))
-                    <li><a href="#studentLogin"><i class="left material-icons">perm_identity</i>登录</a></li>
-                    <li><a href="#studentRegister"><i class="left material-icons">email</i>注册</a></li>
-                @else
-                    <li><h4 class="blue-text">{{ $user->name }}</h4></li>
-                    <li><a href="{{ action("StudentViewController@profile") }}"><i class="left material-icons">perm_identity</i>个人主页</a></li>
-                    <li><a href="{{ action("StudentViewController@message") }}"><i class="left material-icons">email</i>私信</a></li>
-                    <li><a href="{{ action("StudentAuth\\SLoginController@logout") }}"><i class="left material-icons">input</i>注销</a></li>
-                @endif
-            </ul>
-            <ul class="my-menu-tabs tabs tabs-transparent tabs-fixed-width">
-                <li class="tab" style="max-width: 150px;"><a onclick="clickTab('{{ url('/') }}')">首页</a></li>
-                @foreach($courses as $course)
-                    <li class="tab" style="max-width: 150px;">
-                        @if(!empty($courseId) && $course->id == $courseId)
-                            <a class="active" onclick="clickTab('{{ action("StudentViewController@course", $course->id) }}')">{{ $course->name }}</a>
+                    <ul class="side-nav" id="mobile-demo">
+                        @if(empty($user))
+                            <li><a href="#studentLogin"><i class="left material-icons">perm_identity</i>登录</a></li>
+                            <li><a href="#studentRegister"><i class="left material-icons">email</i>注册</a></li>
                         @else
-                            <a onclick="clickTab('{{ action("StudentViewController@course", $course->id) }}')">{{ $course->name }}</a>
+                            <li><h4 class="blue-text">{{ $user->name }}</h4></li>
+                            <li><a href="{{ action("StudentViewController@profile") }}"><i class="left material-icons">perm_identity</i>个人主页</a>
+                            </li>
+                            <li><a href="{{ action("StudentViewController@message") }}"><i class="left material-icons">email</i>私信</a>
+                            </li>
+                            <li><a href="{{ action("StudentAuth\\SLoginController@logout") }}"><i
+                                            class="left material-icons">input</i>注销</a></li>
                         @endif
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-        </div>
+                    </ul>
+                    <ul class="my-menu-tabs tabs tabs-transparent tabs-fixed-width">
+                        <li class="tab" style="max-width: 150px;"><a onclick="clickTab('{{ url('/') }}')">首页</a></li>
+                        @foreach($courses as $course)
+                            <li class="tab" style="max-width: 150px;">
+                                @if(!empty($courseId) && $course->id == $courseId)
+                                    <a class="active"
+                                       onclick="clickTab('{{ action("StudentViewController@course", $course->id) }}')">{{ $course->name }}</a>
+                                @else
+                                    <a onclick="clickTab('{{ action("StudentViewController@course", $course->id) }}')">{{ $course->name }}</a>
+                                @endif
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
         </div>
     </nav>
 </header>
@@ -90,7 +102,8 @@
                 </div>
             </div>
             <div class="modal-footer col s12">
-                <button class="right btn blue lighten-2 waves-effect waves-light" type="submit" name="action">登录</button>
+                <button class="right btn blue lighten-2 waves-effect waves-light" type="submit" name="action">登录
+                </button>
             </div>
         </form>
     </div>
@@ -128,12 +141,14 @@
                     <div class="input-field">
                         <i class="material-icons prefix">vpn_key</i>
                         <label for="password_confirmation">重复密码</label>
-                        <input class="validate" id="password_confirmation" name="password_confirmation" type="password" required>
+                        <input class="validate" id="password_confirmation" name="password_confirmation" type="password"
+                               required>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="right btn blue lighten-2 waves-effect waves-light" type="submit" name="action">注册</button>
+                <button class="right btn blue lighten-2 waves-effect waves-light" type="submit" name="action">注册
+                </button>
             </div>
         </form>
     </div>
@@ -149,7 +164,7 @@
                 <h5 class="white-text">友情链接</h5>
                 <ul>
                     @foreach($setting->links as $title => $url)
-                    <li><a class="grey-text text-lighten-3" href="{{ $url }}" target="_blank">{{ $title }}</a></li>
+                        <li><a class="grey-text text-lighten-3" href="{{ $url }}" target="_blank">{{ $title }}</a></li>
                     @endforeach
                 </ul>
             </div>
@@ -169,7 +184,7 @@
 @yield('script')
 @if (session('status'))
     <script>
-        Materialize.toast('{{ session('status') }}',3000);
+        Materialize.toast('{{ session('status') }}', 3000);
     </script>
 @endif
 @if (count($errors) > 0)
