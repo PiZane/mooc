@@ -10,7 +10,7 @@
                 </div>
             </div>
             @if($lessons->count())
-                <div class="col s12 m3 hide-on-med-and-down" style="margin-left: -2%">
+                <div class="col s12 m3 hide-on-med-and-down">
                     <div class="card">
                         <div class="card-image waves-effect waves-block waves-light">
                             <a href="{{ action("StudentViewController@lesson", [$lessons[0]->course_id, $lessons[0]->id]) }}"><img

@@ -69,7 +69,7 @@
                         <div class="input-field">
                             <i class="material-icons prefix">videocam</i>
                             <label for="video-video_url">视频链接</label>
-                            <input class="validate" id="video-video_url" name="video-video_url" type="text" value="{{ $lesson->video_url }}" placeholder="可空,视频链接和HTML视频代码至少填写一项,默认视频链接优先">
+                            <input class="validate" id="video-video_url" name="video_url" type="text" value="{{ $lesson->video_url }}" placeholder="可空,视频链接和HTML视频代码至少填写一项,默认视频链接优先">
                         </div>
                         <div class="input-field">
                             <i class="material-icons prefix">video_library</i>
